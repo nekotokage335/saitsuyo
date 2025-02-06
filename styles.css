@@ -36,6 +36,12 @@ h1, h3 {
     background-color: #005f4b;
 }
 
+/* フィルタがかかっているときのスタイル */
+.filter-button.active {
+    background-color: #ffeb3b; /* 黄色に変更 */
+    color: #000;
+}
+
 .filter-container {
     background-color: #ffffff;
     border: 1px solid #ccc;
