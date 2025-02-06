@@ -168,7 +168,7 @@
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
                                 if (!$(e.target).closest('.filter-container, .filter-button').length) {
-                                    filterContainer.hide();
+                                    $('.filter-container').hide(); // 他のフィルターボックスを含めすべて非表示
                                 }
                             });
                         });
