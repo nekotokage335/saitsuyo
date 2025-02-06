@@ -1,0 +1,72 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>CSV Files Display</title>
+</head>
+<body>
+    <h1>CSV Files Display</h1>
+    <div id="tables"></div>
+
+    <script>
+        async function loadCSV(file) {
+            const response = await fetch(file);
+            const data = await response.text();
+            return data;
+        }
+
+        async function parseCSV(data) {
+            const rows = data.split('\n');
+            const headers = rows[0].split(',');
+
+            const table = document.createElement('table');
+            const thead = document.createElement('thead');
+            const tbody = document.createElement('tbody');
+
+            const headerRow = document.createElement('tr');
+            headers.forEach(header => {
+                const th = document.createElement('th');
+                th.textContent = header;
+                headerRow.appendChild(th);
+            });
+            thead.appendChild(headerRow);
+            table.appendChild(thead);
+
+            for (let i = 1; i < rows.length; i++) {
+                if (rows[i].trim() === '') continue;
+                const row = rows[i].split(',');
+                const tr = document.createElement('tr');
+                row.forEach(cell => {
+                    const td = document.createElement('td');
+                    td.textContent = cell;
+                    tr.appendChild(td);
+                });
+                tbody.appendChild(tr);
+            }
+
+            table.appendChild(tbody);
+            return table;
+        }
+
+        async function displayCSVFiles() {
+            const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙します
+            const container = document.getElementById('tables');
+
+            for (const file of csvFiles) {
+                const data = await loadCSV(file);
+                const table = await parseCSV(data);
+
+                const title = document.createElement('h2');
+                title.textContent = file;
+
+                container.appendChild(title);
+                container.appendChild(table);
+                container.appendChild(document.createElement('br'));
+            }
+        }
+
+        displayCSVFiles();
+    </script>
+</body>
+</html>
