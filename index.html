@@ -133,6 +133,15 @@
                             filterActionButtons.append(selectAllButton).append(clearAllButton);
                             filterContainer.append(filterActionButtons);
 
+                            // 閉じるボタンを追加
+                            const closeButton = $('<button class="close-filter">閉じる</button>');
+                            filterContainer.append(closeButton);
+
+                            // 閉じるボタンをクリックするとフィルターボックスを非表示にする
+                            $(closeButton).on('click', function () {
+                                filterContainer.hide();
+                            });
+
                             // チェックボックスを作成
                             uniqueData.each(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
