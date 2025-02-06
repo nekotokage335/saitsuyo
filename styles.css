@@ -114,12 +114,53 @@ h1, h3 {
 
 /* テーブルヘッダーのスタイル */
 .dataTables_wrapper .dataTables_scrollHead {
-    background-color: #00796b; /* ヘッダーの背景色 */
+    background-color: #2e7d32; /* 濃い緑の背景色 */
     color: white; /* ヘッダーの文字色 */
+    text-align: left; /* テキストの配置を左揃え */
+    padding: 10px; /* パディングを追加 */
+    border-bottom: 2px solid #005005; /* ボーダーの追加 */
 }
 
 /* テーブルボディのスタイル */
 .dataTables_wrapper .dataTables_scrollBody {
-    background-color: #ffffff; /* ボディの背景色 */
+    background-color: #e8f5e9; /* 薄い緑の背景色 */
 }
 
+/* テーブル行のスタイル */
+table.dataTable tbody tr {
+    background-color: #ffffff; /* 行の背景色 */
+    color: #333; /* 行の文字色 */
+    border-bottom: 1px solid #ddd; /* 行のボーダー */
+}
+
+table.dataTable tbody tr:nth-of-type(even) {
+    background-color: #f1f8e9; /* 偶数行の背景色 */
+}
+
+table.dataTable tbody tr:hover {
+    background-color: #c8e6c9; /* ホバー時の背景色 */
+}
+
+/* テーブルセルのスタイル */
+table.dataTable td, table.dataTable th {
+    padding: 12px 15px; /* セルのパディング */
+    border-right: 1px solid #ddd; /* セルのボーダー */
+}
+
+table.dataTable th {
+    font-weight: bold; /* ヘッダーセルのフォントウェイト */
+}
+
+table.dataTable td:last-of-type, table.dataTable th:last-of-type {
+    border-right: none; /* 最後のセルのボーダーを消す */
+}
+
+/* テーブルの全体スタイル */
+table.dataTable {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+    font-size: 1em;
+    min-width: 400px;
+    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* ボックスシャドウ */
+}
