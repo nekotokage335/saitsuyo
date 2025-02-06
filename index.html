@@ -41,12 +41,7 @@
             const headerRow = document.createElement('tr');
             headers.forEach((header, index) => {
                 const th = document.createElement('th');
-                th.innerHTML = `
-                    ${header}
-                    <button class="sort-asc">昇順ソート</button>
-                    <button class="sort-desc">降順ソート</button>
-                    <button class="sort-clear">ソート解除</button>
-                `;
+                th.textContent = header;
                 th.classList.add('filterable');
                 if (header === "町丁目名") {
                     th.classList.remove('filterable');
@@ -192,20 +187,6 @@
                             });
                         });
                     }
-                });
-
-                // ソートボタンの動作を追加
-                $('th button.sort-asc').on('click', function() {
-                    const column = table.column($(this).closest('th').index());
-                    column.order('asc').draw();
-                });
-                $('th button.sort-desc').on('click', function() {
-                    const column = table.column($(this).closest('th').index());
-                    column.order('desc').draw();
-                });
-                $('th button.sort-clear').on('click', function() {
-                    const column = table.column($(this).closest('th').index());
-                    column.order([]).draw();
                 });
             });
         }
