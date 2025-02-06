@@ -29,10 +29,16 @@
         }
         .filter-header {
             top: 0;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-bottom: 1px solid #ccc;
         }
         .filter-footer {
             bottom: 0;
             text-align: right;
+            background-color: #f1f1f1;
+            padding: 10px;
+            border-top: 1px solid #ccc;
         }
         .filter-group {
             display: block;
@@ -45,7 +51,6 @@
         .filter-action-buttons {
             display: flex;
             justify-content: space-between;
-            padding: 0 10px;
         }
         .filter-checkbox {
             margin-right: 5px;
@@ -143,7 +148,8 @@
                             const filterContainer = $('<div class="filter-container"></div>').hide();
                             const filterHeader = $('<div class="filter-header"></div>');
                             const filterFooter = $('<div class="filter-footer"></div>');
-                            $('body').append(filterContainer.append(filterHeader).append(filterFooter));
+                            filterContainer.append(filterHeader).append(filterFooter);
+                            $('body').append(filterContainer);
 
                             // フィルターボタンを作成
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
@@ -222,8 +228,8 @@
             });
         }
 
-        // CSVファイルを表示する関数を呼び出す
-        displayCSVFiles();
+       // CSVファイルを表示する関数を呼び出す
+       displayCSVFiles();
     </script>
 </body>
 </html>
