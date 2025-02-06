@@ -11,7 +11,7 @@ body {
 
 h1, h3 {
     color: #005f4b; /* 緑の基調色 */
-    text-align: center;
+    text-align: left;
 }
 
 .option_box1 {
