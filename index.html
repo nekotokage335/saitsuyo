@@ -15,8 +15,25 @@
             border: 1px solid #ccc;
             padding: 10px;
             z-index: 1000;
-            max-height: 200px; /* 最大高さを設定 */
+            max-height: 250px; /* 最大高さを設定 */
             overflow-y: auto; /* 縦スクロールを有効にする */
+            box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+            border-radius: 8px;
+        }
+        .filter-header {
+            position: sticky;
+            top: 0;
+            background-color: white;
+            padding: 5px 0;
+            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+        }
+        .filter-footer {
+            position: sticky;
+            bottom: 0;
+            background-color: white;
+            padding: 5px 0;
+            box-shadow: 0 -2px 2px -1px rgba(0, 0, 0, 0.2);
+            text-align: right;
         }
         .filter-group {
             display: block;
@@ -30,6 +47,13 @@
             display: flex;
             justify-content: space-between;
             margin-bottom: 10px;
+        }
+        .filter-checkbox {
+            margin-right: 5px;
+        }
+        .filter-container label {
+            display: flex;
+            align-items: center;
         }
     </style>
     <!-- jQueryとDataTablesのJavaScriptを追加 -->
@@ -118,7 +142,9 @@
                             const column = this;
                             const columnName = $(column.header()).text();
                             const filterContainer = $('<div class="filter-container"></div>').hide();
-                            $('body').append(filterContainer);
+                            const filterHeader = $('<div class="filter-header"></div>');
+                            const filterFooter = $('<div class="filter-footer"></div>');
+                            $('body').append(filterContainer.append(filterHeader).append(filterFooter));
 
                             // フィルターボタンを作成
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
@@ -131,11 +157,11 @@
                             const selectAllButton = $('<button class="select-all">全選択</button>');
                             const clearAllButton = $('<button class="clear-all">選択クリア</button>');
                             filterActionButtons.append(selectAllButton).append(clearAllButton);
-                            filterContainer.append(filterActionButtons);
+                            filterHeader.append(filterActionButtons);
 
                             // 閉じるボタンを追加
                             const closeButton = $('<button class="close-filter">閉じる</button>');
-                            filterContainer.append(closeButton);
+                            filterFooter.append(closeButton);
 
                             // 閉じるボタンをクリックするとフィルターボックスを非表示にする
                             $(closeButton).on('click', function () {
