@@ -95,39 +95,31 @@ h1, h3 {
     background-color: #d32f2f;
 }
 
+/* DataTablesの表示に関するスタイル調整 */
+
+/* "Show entries" ドロップダウンのスタイル */
+.dataTables_length {
+    margin-bottom: 20px; /* テーブルとエントリー表示の間隔を広げる */
+}
+
+.dataTables_length label {
+    font-size: 1em; /* フォントサイズを調整 */
+    color: #333; /* 文字色を調整 */
+}
+
 /* テーブル全体のスタイル */
-table.display {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 1em;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1);
+.dataTables_wrapper {
+    margin-top: 20px; /* テーブルの上部に余白を追加 */
 }
 
-table.display thead tr {
-    background-color: #00796b;
-    color: #ffffff;
-    text-align: left;
+/* テーブルヘッダーのスタイル */
+.dataTables_wrapper .dataTables_scrollHead {
+    background-color: #00796b; /* ヘッダーの背景色 */
+    color: white; /* ヘッダーの文字色 */
 }
 
-table.display th, table.display td {
-    padding: 12px 15px;
-    border: 1px solid #ddd;
+/* テーブルボディのスタイル */
+.dataTables_wrapper .dataTables_scrollBody {
+    background-color: #ffffff; /* ボディの背景色 */
 }
 
-table.display tbody tr {
-    border-bottom: 1px solid #ddd;
-}
-
-table.display tbody tr:nth-of-type(even) {
-    background-color: #f3f3f3;
-}
-
-table.display tbody tr:last-of-type {
-    border-bottom: 2px solid #00796b;
-}
-
-table.display tbody tr:hover {
-    background-color: #f1f1f1;
-}
