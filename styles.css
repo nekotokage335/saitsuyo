@@ -1,0 +1,48 @@
+.filter-container {
+    display: none;
+    position: absolute;
+    background-color: white;
+    border: 1px solid #ccc;
+    max-height: 250px;
+    overflow-y: auto;
+    box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
+    border-radius: 8px;
+}
+.filter-header, .filter-footer {
+    position: sticky;
+    background-color: white;
+    padding: 10px;
+    z-index: 10;
+}
+.filter-header {
+    top: 0;
+    background-color: #f1f1f1;
+    border-bottom: 1px solid #ccc;
+}
+.filter-footer {
+    bottom: 0;
+    text-align: right;
+    background-color: #f1f1f1;
+    border-top: 1px solid #ccc;
+}
+.filter-group {
+    display: block;
+    margin-bottom: 10px;
+}
+.filter-button.active {
+    background-color: #007bff;
+    color: white;
+}
+.filter-action-buttons {
+    display: flex;
+    justify-content: space-between;
+}
+.filter-container label {
+    display: flex;
+    align-items: center;
+    white-space: nowrap; /* 改行を防ぐ */
+    margin-bottom: 5px;
+}
+.filter-checkbox {
+    margin-right: 5px; /* チェックボックスと項目名の間に余白を追加 */
+}
