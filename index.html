@@ -26,6 +26,11 @@
             background-color: #007bff;
             color: white;
         }
+        .filter-action-buttons {
+            display: flex;
+            justify-content: space-between;
+            margin-bottom: 10px;
+        }
     </style>
     <!-- jQueryとDataTablesのJavaScriptを追加 -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -114,13 +119,16 @@
 
                             // フィルターボタンを作成
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
-                            const selectAllButton = $('<button class="select-all">全選択</button>');
-                            const clearAllButton = $('<button class="clear-all">選択クリア</button>');
                             filterButtonsContainer.appendChild(filterButton[0]);
-                            filterButtonsContainer.appendChild(selectAllButton[0]);
-                            filterButtonsContainer.appendChild(clearAllButton[0]);
 
                             const uniqueData = column.data().unique().sort();
+
+                            // 全選択と選択クリアボタンをフィルターボックス内に追加
+                            const filterActionButtons = $('<div class="filter-action-buttons"></div>');
+                            const selectAllButton = $('<button class="select-all">全選択</button>');
+                            const clearAllButton = $('<button class="clear-all">選択クリア</button>');
+                            filterActionButtons.append(selectAllButton).append(clearAllButton);
+                            filterContainer.append(filterActionButtons);
 
                             // チェックボックスを作成
                             uniqueData.each(function (d) {
