@@ -60,9 +60,12 @@
                 if (rows[i].trim() === '') continue;
                 const row = rows[i].split(',');
                 const tr = document.createElement('tr');
-                row.forEach(cell => {
+                row.forEach((cell, index) => {
                     const td = document.createElement('td');
                     td.textContent = cell;
+                    if (index >= 4 && index <= 6) { // 建物倒壊危険度、火災危険度、総合危険度の列番号を指定
+                        td.setAttribute('data-value', cell);
+                    }
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
@@ -199,14 +202,13 @@
                                 const red = Math.round(255 * ratio);
                                 const blue = Math.round(255 * (1 - ratio));
                                 const color = `rgb(${red}, 0, ${blue})`;
-                                return `<td data-value="${value}" style="background-color: ${color}; color: white;">${value}</td>`;
+                                return `<span data-value="${value}" style="background-color: ${color}; color: white; display: block; padding: 5px 0;">${value}</span>`;
                             }
                         }
                     ]
                 });
             });
         }
-
         // CSVファイルを表示する関数を呼び出す
         displayCSVFiles();
     </script>
