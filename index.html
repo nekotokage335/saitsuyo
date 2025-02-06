@@ -6,12 +6,22 @@
     <title>CSV Files Display</title>
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
+    <style>
+        .filter-container {
+            margin-bottom: 20px;
+        }
+        .filter-group {
+            display: inline-block;
+            margin-right: 20px;
+        }
+    </style>
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 </head>
 <body>
     <h1>CSV Files Display</h1>
+    <div id="filters" class="filter-container"></div>
     <div id="tables"></div>
 
     <script>
@@ -26,6 +36,7 @@
             const headers = rows[0].split(',');
 
             const table = document.createElement('table');
+            table.classList.add('display');
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
@@ -57,12 +68,12 @@
         async function displayCSVFiles() {
             const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙します
             const container = document.getElementById('tables');
+            const filterContainer = document.getElementById('filters');
 
             for (const file of csvFiles) {
                 const data = await loadCSV(file);
                 const table = await parseCSV(data);
-                table.classList.add('display');
-
+                
                 const title = document.createElement('h2');
                 title.textContent = file;
 
@@ -73,18 +84,32 @@
 
             // DataTableを適用
             $(document).ready(function() {
-                const table = $('table.display').DataTable();
-                $('table.display thead th').each(function (i) {
-                    const select = $('<select><option value=""></option></select>')
-                        .appendTo($(this).empty())
-                        .on('change', function () {
-                            const val = $.fn.dataTable.util.escapeRegex($(this).val());
-                            table.column(i).search(val ? '^' + val + '$' : '', true, false).draw();
-                        });
+                const table = $('table.display').DataTable({
+                    initComplete: function () {
+                        this.api().columns().every(function () {
+                            const column = this;
+                            const filterGroup = $('<div class="filter-group"></div>')
+                                .appendTo(filterContainer);
 
-                    table.column(i).data().unique().sort().each(function (d, j) {
-                        select.append('<option value="' + d + '">' + d + '</option>')
-                    });
+                            const uniqueData = column.data().unique().sort();
+
+                            uniqueData.each(function (d) {
+                                const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
+                                const label = $('<label></label>').text(d);
+
+                                filterGroup.append(checkbox).append(label).append('<br>');
+                            });
+
+                            $('.filter-checkbox').on('change', function () {
+                                let searchString = '';
+                                $('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
+                                    searchString += $(this).val() + '|';
+                                });
+
+                                column.search(searchString.slice(0, -1), true, false).draw();
+                            });
+                        });
+                    }
                 });
             });
         }
