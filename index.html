@@ -4,33 +4,41 @@
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>CSV Files Display</title>
+    <!-- DataTablesのスタイルシートを追加 -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
     <style>
         .filter-container {
-            margin-bottom: 20px;
+            display: none;
+            position: absolute;
+            background-color: white;
+            border: 1px solid #ccc;
+            padding: 10px;
+            z-index: 1000;
         }
         .filter-group {
-            display: inline-block;
-            margin-right: 20px;
+            display: block;
+            margin-bottom: 10px;
         }
     </style>
+    <!-- jQueryとDataTablesのJavaScriptを追加 -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
 </head>
 <body>
     <h1>CSV Files Display</h1>
-    <div id="filters" class="filter-container"></div>
     <div id="tables"></div>
 
     <script>
+        // CSVファイルを読み込む関数
         async function loadCSV(file) {
             const response = await fetch(file);
             const data = await response.text();
             return data;
         }
 
+        // CSVデータを解析し、HTMLテーブルに変換する関数
         async function parseCSV(data) {
             const rows = data.split('\n');
             const headers = rows[0].split(',');
@@ -40,15 +48,18 @@
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
+            // ヘッダー行を作成
             const headerRow = document.createElement('tr');
             headers.forEach(header => {
                 const th = document.createElement('th');
                 th.textContent = header;
+                th.classList.add('filterable');
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
             table.appendChild(thead);
 
+            // データ行を作成
             for (let i = 1; i < rows.length; i++) {
                 if (rows[i].trim() === '') continue;
                 const row = rows[i].split(',');
@@ -65,10 +76,10 @@
             return table;
         }
 
+        // CSVファイルを表示する関数
         async function displayCSVFiles() {
-            const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙します
+            const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙
             const container = document.getElementById('tables');
-            const filterContainer = document.getElementById('filters');
 
             for (const file of csvFiles) {
                 const data = await loadCSV(file);
@@ -85,21 +96,32 @@
             // DataTableを適用
             $(document).ready(function() {
                 const table = $('table.display').DataTable({
+                    // DataTableが初期化された後に実行
                     initComplete: function () {
                         this.api().columns().every(function () {
                             const column = this;
-                            const filterGroup = $('<div class="filter-group"></div>')
-                                .appendTo(filterContainer);
+                            const filterContainer = $('<div class="filter-container"></div>');
+                            $('body').append(filterContainer);
 
+                            // ユニークなデータ値を取得し、チェックボックスを作成
                             const uniqueData = column.data().unique().sort();
 
                             uniqueData.each(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
                                 const label = $('<label></label>').text(d);
 
-                                filterGroup.append(checkbox).append(label).append('<br>');
+                                filterContainer.append($('<div class="filter-group"></div>').append(checkbox).append(label));
                             });
 
+                            // ヘッダーをクリックするとフィルターボックスを表示
+                            $('.filterable').eq(column.index()).on('click', function (e) {
+                                filterContainer.toggle().css({
+                                    top: e.pageY,
+                                    left: e.pageX
+                                });
+                            });
+
+                            // チェックボックスの値に基づいてフィルタリング
                             $('.filter-checkbox').on('change', function () {
                                 let searchString = '';
                                 $('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
@@ -108,12 +130,20 @@
 
                                 column.search(searchString.slice(0, -1), true, false).draw();
                             });
+
+                            // フィルターボックス以外をクリックすると非表示
+                            $(document).on('click', function (e) {
+                                if (!$(e.target).closest('.filter-container, .filterable').length) {
+                                    filterContainer.hide();
+                                }
+                            });
                         });
                     }
                 });
             });
         }
 
+        // CSVファイルを表示する関数を呼び出す
         displayCSVFiles();
     </script>
 </body>
