@@ -80,10 +80,6 @@
                 const data = await loadCSV(file);
                 const table = await parseCSV(data);
 
-                const title = document.createElement('h2');
-                title.textContent = file;
-
-                container.appendChild(title);
                 container.appendChild(table);
                 container.appendChild(document.createElement('br'));
             }
