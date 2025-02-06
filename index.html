@@ -186,7 +186,23 @@
                                 }
                             });
                         });
-                    }
+                    },
+                    // 列ごとにレンダリング関数を追加
+                    columnDefs: [
+                        {
+                            targets: [4, 5, 6], // ここには建物倒壊危険度、火災危険度、総合危険度の列番号を指定
+                            render: function(data, type, row) {
+                                const value = parseFloat(data);
+                                const max = 5;
+                                const min = 1;
+                                const ratio = (value - min) / (max - min);
+                                const red = Math.round(255 * ratio);
+                                const blue = Math.round(255 * (1 - ratio));
+                                const color = `rgb(${red}, 0, ${blue})`;
+                                return `<td data-value="${value}" style="background-color: ${color}; color: white;">${value}</td>`;
+                            }
+                        }
+                    ]
                 });
             });
         }
