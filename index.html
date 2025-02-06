@@ -28,6 +28,7 @@
 </head>
 <body>
     <h1>CSV Files Display</h1>
+    <div id="filter-buttons"></div>
     <div id="tables"></div>
 
     <script>
@@ -80,6 +81,7 @@
         async function displayCSVFiles() {
             const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙
             const container = document.getElementById('tables');
+            const filterButtonsContainer = document.getElementById('filter-buttons');
 
             for (const file of csvFiles) {
                 const data = await loadCSV(file);
@@ -100,12 +102,17 @@
                     initComplete: function () {
                         this.api().columns().every(function () {
                             const column = this;
-                            const filterContainer = $('<div class="filter-container"></div>');
+                            const columnName = $(column.header()).text();
+                            const filterContainer = $('<div class="filter-container"></div>').hide();
                             $('body').append(filterContainer);
 
-                            // ユニークなデータ値を取得し、チェックボックスを作成
+                            // フィルターボタンを作成
+                            const filterButton = $('<button class="filter-button">' + columnName + '</button>');
+                            filterButtonsContainer.appendChild(filterButton[0]);
+
                             const uniqueData = column.data().unique().sort();
 
+                            // チェックボックスを作成
                             uniqueData.each(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
                                 const label = $('<label></label>').text(d);
@@ -113,8 +120,8 @@
                                 filterContainer.append($('<div class="filter-group"></div>').append(checkbox).append(label));
                             });
 
-                            // ヘッダーをクリックするとフィルターボックスを表示
-                            $('.filterable').eq(column.index()).on('click', function (e) {
+                            // フィルターボタンをクリックするとフィルターボックスを表示
+                            $(filterButton).on('click', function (e) {
                                 filterContainer.toggle().css({
                                     top: e.pageY,
                                     left: e.pageX
@@ -133,7 +140,7 @@
 
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
-                                if (!$(e.target).closest('.filter-container, .filterable').length) {
+                                if (!$(e.target).closest('.filter-container, .filter-button').length) {
                                     filterContainer.hide();
                                 }
                             });
