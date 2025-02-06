@@ -13,31 +13,26 @@
             position: absolute;
             background-color: white;
             border: 1px solid #ccc;
-            padding: 10px;
-            z-index: 1000;
-            max-height: 250px; /* 最大高さを設定 */
-            overflow-y: auto; /* 縦スクロールを有効にする */
+            max-height: 250px;
+            overflow-y: auto;
             box-shadow: 0 4px 8px rgba(0, 0, 0, 0.1);
             border-radius: 8px;
         }
         .filter-header, .filter-footer {
             position: sticky;
             background-color: white;
-            padding: 5px 0;
-            box-shadow: 0 2px 2px -1px rgba(0, 0, 0, 0.2);
+            padding: 10px;
             z-index: 10;
         }
         .filter-header {
             top: 0;
             background-color: #f1f1f1;
-            padding: 10px;
             border-bottom: 1px solid #ccc;
         }
         .filter-footer {
             bottom: 0;
             text-align: right;
             background-color: #f1f1f1;
-            padding: 10px;
             border-top: 1px solid #ccc;
         }
         .filter-group {
@@ -100,7 +95,7 @@
                 headerRow.appendChild(th);
             });
             thead.appendChild(headerRow);
-            table.appendChild(tbody);
+            table.appendChild(thead);
 
             // データ行を作成
             for (let i = 1; i < rows.length; i++) {
@@ -148,7 +143,8 @@
                             const filterContainer = $('<div class="filter-container"></div>').hide();
                             const filterHeader = $('<div class="filter-header"></div>');
                             const filterFooter = $('<div class="filter-footer"></div>');
-                            filterContainer.append(filterHeader).append(filterFooter);
+                            const filterContent = $('<div class="filter-content"></div>');
+                            filterContainer.append(filterHeader).append(filterContent).append(filterFooter);
                             $('body').append(filterContainer);
 
                             // フィルターボタンを作成
@@ -178,7 +174,7 @@
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
                                 const label = $('<label></label>').text(d);
 
-                                filterContainer.append($('<div class="filter-group"></div>').append(checkbox).append(label));
+                                filterContent.append($('<div class="filter-group"></div>').append(checkbox).append(label));
                             });
 
                             // フィルターボタンをクリックするとフィルターボックスを表示
@@ -228,8 +224,8 @@
             });
         }
 
-       // CSVファイルを表示する関数を呼び出す
-       displayCSVFiles();
+        // CSVファイルを表示する関数を呼び出す
+        displayCSVFiles();
     </script>
 </body>
 </html>
