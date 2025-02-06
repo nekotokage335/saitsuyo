@@ -47,7 +47,7 @@
                 const th = document.createElement('th');
                 th.textContent = header;
                 th.classList.add('filterable');
-                if (header === "町丁目") {
+                if (header === "町丁目名") {
                     th.classList.remove('filterable');
                 }
                 headerRow.appendChild(th);
@@ -60,12 +60,9 @@
                 if (rows[i].trim() === '') continue;
                 const row = rows[i].split(',');
                 const tr = document.createElement('tr');
-                row.forEach((cell, index) => {
+                row.forEach(cell => {
                     const td = document.createElement('td');
                     td.textContent = cell;
-                    if (index >= 4 && index <= 6) { // 建物倒壊危険度、火災危険度、総合危険度の列番号を指定
-                        td.setAttribute('data-value', cell);
-                    }
                     tr.appendChild(td);
                 });
                 tbody.appendChild(tr);
@@ -189,26 +186,11 @@
                                 }
                             });
                         });
-                    },
-                    // 列ごとにレンダリング関数を追加
-                    columnDefs: [
-                        {
-                            targets: [4, 5, 6], // ここには建物倒壊危険度、火災危険度、総合危険度の列番号を指定
-                            render: function(data, type, row) {
-                                const value = parseFloat(data);
-                                const max = 5;
-                                const min = 1;
-                                const ratio = (value - min) / (max - min);
-                                const red = Math.round(255 * ratio);
-                                const blue = Math.round(255 * (1 - ratio));
-                                const color = `rgb(${red}, 0, ${blue})`;
-                                return `<span data-value="${value}" style="background-color: ${color}; color: white; display: block; padding: 5px 0;">${value}</span>`;
-                            }
-                        }
-                    ]
+                    }
                 });
             });
         }
+
         // CSVファイルを表示する関数を呼び出す
         displayCSVFiles();
     </script>
