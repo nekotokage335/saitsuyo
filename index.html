@@ -22,6 +22,10 @@
             display: block;
             margin-bottom: 10px;
         }
+        .filter-button.active {
+            background-color: #007bff;
+            color: white;
+        }
     </style>
     <!-- jQueryとDataTablesのJavaScriptを追加 -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
@@ -110,7 +114,11 @@
 
                             // フィルターボタンを作成
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
+                            const selectAllButton = $('<button class="select-all">全選択</button>');
+                            const clearAllButton = $('<button class="clear-all">選択クリア</button>');
                             filterButtonsContainer.appendChild(filterButton[0]);
+                            filterButtonsContainer.appendChild(selectAllButton[0]);
+                            filterButtonsContainer.appendChild(clearAllButton[0]);
 
                             const uniqueData = column.data().unique().sort();
 
@@ -130,6 +138,16 @@
                                 });
                             });
 
+                            // 全選択ボタンをクリックするとすべてのチェックボックスを選択
+                            $(selectAllButton).on('click', function () {
+                                filterContainer.find('.filter-checkbox').prop('checked', true).change();
+                            });
+
+                            // 選択クリアボタンをクリックするとすべてのチェックボックスを解除
+                            $(clearAllButton).on('click', function () {
+                                filterContainer.find('.filter-checkbox').prop('checked', false).change();
+                            });
+
                             // チェックボックスの値に基づいてフィルタリング
                             $('.filter-checkbox').on('change', function () {
                                 let searchString = '';
@@ -138,6 +156,13 @@
                                 });
 
                                 column.search(searchString.slice(0, -1), true, false).draw();
+
+                                // フィルタが適用されているか確認
+                                if (searchString) {
+                                    $(filterButton).addClass('active');
+                                } else {
+                                    $(filterButton).removeClass('active');
+                                }
                             });
 
                             // フィルターボックス以外をクリックすると非表示
