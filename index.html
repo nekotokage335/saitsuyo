@@ -55,8 +55,9 @@
             align-items: center;
             white-space: nowrap; /* 改行を防ぐ */
             margin-bottom: 5px;
-            padding: 5px;
-            border-bottom: 1px solid #eee;
+        }
+        .filter-checkbox {
+            margin-right: 5px; /* チェックボックスと項目名の間に余白を追加 */
         }
     </style>
     <!-- jQueryとDataTablesのJavaScriptを追加 -->
@@ -173,12 +174,11 @@
                                 filterContainer.hide();
                             });
 
-                            // チェックボックスを作成
                             uniqueData.each(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
-                                const label = $('<label></label>').text(d);
-
-                                filterContent.append($('<div class="filter-group"></div>').append(checkbox).append(label));
+                                const label = $('<label></label>').append(checkbox).append(d); // チェックボックスと項目名を一行に配置
+                            
+                                filterContent.append($('<div class="filter-group"></div>').append(label));
                             });
 
                             // フィルターボタンをクリックするとフィルターボックスを表示
