@@ -166,10 +166,14 @@
                             });
 
                             // チェックボックスを作成
-                            uniqueData.each(function (d) {
+                            //uniqueData.each(function (d) {
+                                //const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
+                                //const label = $('<label></label>').append(checkbox).append(d); // チェックボックスと項目名を一行に配置
+                                //filterContent.append($('<div class="filter-group"></div>').append(label));
+                            //});
+                            uniqueData.forEach(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
                                 const label = $('<label></label>').append(checkbox).append(d); // チェックボックスと項目名を一行に配置
-
                                 filterContent.append($('<div class="filter-group"></div>').append(label));
                             });
 
