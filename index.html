@@ -21,6 +21,10 @@
         <li>数字が小さい（1に近い）ほど危険度が低く、数字が大きい（5に近い）ほど危険度が高いです。</li>
     </ul>
     <div class="option_box1">
+        <h3>列フィルター</h3>
+        <div id="columns-container"></div>
+    </div>
+    <div class="option_box2">
         <h3>検索フィルター</h3>
         <div id="filter-buttons"></div>
     </div>
@@ -79,6 +83,7 @@
         async function displayCSVFiles() {
             const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙
             const container = document.getElementById('tables');
+            const columnsContainer = document.getElementById('columns-container');
             const filterButtonsContainer = document.getElementById('filter-buttons');
 
             for (const file of csvFiles) {
@@ -95,8 +100,6 @@
                     // DataTableが初期化された後に実行
                     initComplete: function () {
                         const tableColumns = this.api().columns();
-                        const columnsContainer = $('<div class="columns-container"></div>');
-                        $('body').prepend(columnsContainer);
 
                         // 各列のチェックボックスを作成
                         tableColumns.every(function (index) {
