@@ -97,6 +97,13 @@
             // DataTableを適用
             $(document).ready(function() {
                 const table = $('table.display').DataTable({
+                    // 初期化時に特定の列を非表示に設定
+                    columnDefs: [
+                        {
+                            targets: ["建物倒壊危険度", "火災危険度"], // 非表示にしたい列のインデックスまたは名前
+                            visible: false
+                        }
+                    ],
                     // DataTableが初期化された後に実行
                     initComplete: function () {
 
