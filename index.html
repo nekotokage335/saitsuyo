@@ -104,8 +104,16 @@
                         this.api().columns().every(function (index) {
                             const column = this;
                             const columnName = $(column.header()).text();
+
+                            // チェックボックスを作成し、特定の列名の場合はデフォルトでチェックを外す
                             const checkedState = (columnName === "建物倒壊危険度" || columnName === "火災危険度") ? false : true;
                             const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').val(columnName).prop('checked', checkedState);
+
+                            // デフォルトでチェックが入っていない列を非表示に設定
+                            if (!checkedState) {
+                                table.column(index).visible(false);
+                            }
+                            
                             const label = $('<label></label>').append(checkbox).append(columnName);
                             const columnGroup = $('<div class="column-group"></div>').append(label);
                             $('#columns-container').append(columnGroup);
