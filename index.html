@@ -104,9 +104,9 @@
                         // 各列のチェックボックスを作成
                         tableColumns.every(function (index) {
                             const column = this;
-                            const columnName = $(column.header()).text();
+                            const columnName = $(column.header()).text(); // 列名を取得
                             const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').prop('checked', true);
-                            const label = $('<label></label>').append(checkbox).append(columnName);
+                            const label = $('<label></label>').append(checkbox).append(document.createTextNode(columnName));
                             columnsContainer.append($('<div class="column-group"></div>').append(label));
                         
                             // チェックボックスの状態によって列の表示/非表示を切り替える
