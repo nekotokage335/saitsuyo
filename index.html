@@ -151,7 +151,7 @@
                             const uniqueData = column.data().toArray()
                                 .map(d => d.split('<br>'))
                                 .flat()
-                                .filter((v, i, a) => a.indexOf(v) === i && !v.includes('・'))
+                                .filter((v, i, a) => a.indexOf(v) === i && !v.includes('<br>'))
                                 .sort();
 
                             // 全選択と選択クリアボタンをフィルターボックス内に追加
