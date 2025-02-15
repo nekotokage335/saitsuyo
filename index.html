@@ -20,8 +20,10 @@
         <li>出典: <cite><a href="https://www.funenka.metro.tokyo.lg.jp/area-hazard-level/regional-risk-list/">東京都不燃化ポータルサイト 地域危険度一覧表</a></cite></li>
         <li>数字が小さい（1に近い）ほど危険度が低く、数字が大きい（5に近い）ほど危険度が高いです。</li>
     </ul>
-    <h3>列フィルター</h3>
-    <div id="columns-container"></div>
+    <div class="option_box1">
+        <h3>列フィルター</h3>
+        <div id="columns-container"></div>
+    </div>
     <div class="option_box2">
         <h3>検索フィルター</h3>
         <div id="filter-buttons"></div>
@@ -105,8 +107,7 @@
                             const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').val(columnName).prop('checked', true);
                             const label = $('<label></label>').append(checkbox).append(columnName);
                             const columnGroup = $('<div class="column-group"></div>').append(label);
-                            columnsContainer.append(columnGroup);
-                            console.log(columnsContainer.html());
+                            columnsContainer = $('<div class="columns-container"></div>').append(columnGroup);
                         
                             // チェックボックスの状態によって列の表示/非表示を切り替える
                             checkbox.on('change', function () {
