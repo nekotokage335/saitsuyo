@@ -20,10 +20,8 @@
         <li>出典: <cite><a href="https://www.funenka.metro.tokyo.lg.jp/area-hazard-level/regional-risk-list/">東京都不燃化ポータルサイト 地域危険度一覧表</a></cite></li>
         <li>数字が小さい（1に近い）ほど危険度が低く、数字が大きい（5に近い）ほど危険度が高いです。</li>
     </ul>
-    <div class="option_box1">
-        <h3>列フィルター</h3>
-        <div id="columns-container"></div>
-    </div>
+    <h3>列フィルター</h3>
+    <div id="columns-container"></div>
     <div class="option_box2">
         <h3>検索フィルター</h3>
         <div id="filter-buttons"></div>
@@ -99,14 +97,13 @@
                 const table = $('table.display').DataTable({
                     // DataTableが初期化された後に実行
                     initComplete: function () {
-                        const tableColumns = this.api().columns();
 
                         // 各列のチェックボックスを作成
-                        tableColumns.every(function (index) {
+                        this.api().columns().every(function (index) {
                             const column = this;
-                            const columnName = $(column.header()).text(); // 列名を取得
-                            const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').prop('checked', true);
-                            const label = $('<label></label>').append(checkbox).append(document.createTextNode(columnName));
+                            const columnName = $(column.header()).text();
+                            const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').val(columnName).prop('checked', true);
+                            const label = $('<label></label>').append(checkbox).append(columnName);
                             columnsContainer.append($('<div class="column-group"></div>').append(label));
                         
                             // チェックボックスの状態によって列の表示/非表示を切り替える
