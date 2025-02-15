@@ -146,7 +146,8 @@
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
                             filterButtonsContainer.appendChild(filterButton[0]);
 
-                            const uniqueData = column.data().unique().sort();
+                            // const uniqueData = column.data().unique().sort();
+                            const uniqueData = column.data().toArray().map(d => d.split('<br>')).flat().filter((v, i, a) => a.indexOf(v) === i).sort();
 
                             // 全選択と選択クリアボタンをフィルターボックス内に追加
                             const filterActionButtons = $('<div class="filter-action-buttons"></div>');
