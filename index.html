@@ -102,6 +102,7 @@
                         this.api().columns().every(function (index) {
                             const column = this;
                             const columnName = $(column.header()).text();
+                            console.log("columnName:", columnName);
                             const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').val(columnName).prop('checked', true);
                             const label = $('<label></label>').append(checkbox).append(columnName);
                             columnsContainer.append($('<div class="column-group"></div>').append(label));
