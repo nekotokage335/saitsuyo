@@ -152,6 +152,7 @@
                                 .flatMap(d => d.split('<br>')) // ここで「・」で分割された全ての値を取得
                                 .filter((v, i, a) => a.indexOf(v) === i) // 重複を取り除く
                                 .sort();
+                            console.log('Unique Data:', uniqueData);
 
                             // 全選択と選択クリアボタンをフィルターボックス内に追加
                             const filterActionButtons = $('<div class="filter-action-buttons"></div>');
