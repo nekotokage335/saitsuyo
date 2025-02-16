@@ -130,7 +130,6 @@
     
                         const filterContainers = [];
 
-                        //this.api().columns('.filterable').every(function () {
                         this.api().columns('.filterable').every(function (index) {
                             const column = this;
                             const columnName = $(column.header()).text();
@@ -150,8 +149,8 @@
 
                             // const uniqueData = column.data().unique().sort();
                             const uniqueData = column.data().toArray()
-                                .flatMap(d => d.split(' ')) // ここで「・」で分割された全ての値を取得
-                                .filter((v, i, a) => a.indexOf(v) === i) // 重複を取り除く
+                                .flatMap(d => d.split(' '))
+                                .filter((v, i, a) => a.indexOf(v) === i)
                                 .sort();
 
                             // 全選択と選択クリアボタンをフィルターボックス内に追加
@@ -178,10 +177,6 @@
 
                             // フィルターボタンをクリックするとフィルターボックスを表示
                             $(filterButton).on('click', function (e) {
-                                // 他のフィルターボックスを閉じる
-                                //filterContainers.forEach(function(container) {
-                                    //if (container !== filterContainer) {
-                                        //container.hide();
                                 filterContainers.forEach(function (containerObj) {
                                     if (containerObj.container !== filterContainer) {
                                         containerObj.container.hide();
@@ -205,10 +200,8 @@
                             });
 
                             // チェックボックスの値に基づいてフィルタリング
-                            // $('.filter-checkbox').on('change', function () {
                             filterContent.on('change', '.filter-checkbox', function () {
                                 let searchString = '';
-                                //$('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
                                 filterContent.find('.filter-checkbox[data-column="' + index + '"]:checked').each(function () {
                                     searchString += $(this).val() + '|';
                                 });
@@ -224,6 +217,7 @@
                                     $(filterButton).addClass('active');
                                 } else {
                                     $(filterButton).removeClass('active');
+                                    updateCheckboxes(column.index());
                                 }
                             });
 
@@ -231,11 +225,8 @@
                             function updateFilterBoxes(api) {
                                 const filteredData = api.rows({ search: 'applied' }).data();
                             
-                                //api.columns('.filterable').every(function () {
                                 api.columns('.filterable').every(function (colIndex) {
                                     const column = this;
-                                    //const columnName = $(column.header()).text();
-                                    //const filterContent = $('.filter-content').eq(column.index());
                                     const filterContent = filterContainers.find(obj => obj.index === colIndex).container.find('.filter-content');
                             
                                     filterContent.empty();
@@ -253,12 +244,24 @@
                                 });
                             }
 
+                            // フィルターボックスのチェックボックスの状態を更新する関数
+                            function updateCheckboxes(index) {
+                                filterContainers.forEach(function(containerObj) {
+                                    if (containerObj.index === index) {
+                                        const filterContent = containerObj.container.find('.filter-content');
+                                        filterContent.find('.filter-checkbox').each(function() {
+                                            const checkbox = $(this);
+                                            const value = checkbox.val();
+                                            const isChecked = column.search().split('|').includes(value);
+                                            checkbox.prop('checked', isChecked);
+                                        });
+                                    }
+                                });
+
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
                                 if (!$(e.target).closest('.filter-container, .filter-button').length) {
-                                    //filterContainers.forEach(function(container) {
                                     filterContainers.forEach(function(containerObj) {
-                                        //container.hide();
                                         containerObj.container.hide();
                                     });
                                 }
