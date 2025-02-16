@@ -151,7 +151,6 @@
                                 .flatMap(d => d.split(' ')) // ここで「・」で分割された全ての値を取得
                                 .filter((v, i, a) => a.indexOf(v) === i) // 重複を取り除く
                                 .sort();
-                            console.log('Unique Data:', uniqueData);
 
                             // 全選択と選択クリアボタンをフィルターボックス内に追加
                             const filterActionButtons = $('<div class="filter-action-buttons"></div>');
@@ -208,8 +207,10 @@
                                 });
                                 column.search(searchString.slice(0, -1), true, false).draw();
 
+                                // DataTableのインスタンスを取得
+                                const tableApi = column.table().context[0].oInstance.api();
                                 // 他の列のフィルタボックスを更新
-                                updateFilterBoxes(column.settings()[0].oInstance);
+                                updateFilterBoxes(tableApi);
 
                                 // フィルタが適用されているか確認
                                 if (searchString) {
