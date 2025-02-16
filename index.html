@@ -205,9 +205,11 @@
                             });
 
                             // チェックボックスの値に基づいてフィルタリング
-                            $('.filter-checkbox').on('change', function () {
+                            // $('.filter-checkbox').on('change', function () {
+                            filterContent.on('change', '.filter-checkbox', function () {
                                 let searchString = '';
-                                $('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
+                                //$('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
+                                filterContent.find('.filter-checkbox[data-column="' + index + '"]:checked').each(function () {
                                     searchString += $(this).val() + '|';
                                 });
                                 column.search(searchString.slice(0, -1), true, false).draw();
@@ -229,10 +231,12 @@
                             function updateFilterBoxes(api) {
                                 const filteredData = api.rows({ search: 'applied' }).data();
                             
-                                api.columns('.filterable').every(function () {
+                                //api.columns('.filterable').every(function () {
+                                api.columns('.filterable').every(function (colIndex) {
                                     const column = this;
-                                    const columnName = $(column.header()).text();
-                                    const filterContent = $('.filter-content').eq(column.index());
+                                    //const columnName = $(column.header()).text();
+                                    //const filterContent = $('.filter-content').eq(column.index());
+                                    const filterContent = filterContainers.find(obj => obj.index === colIndex).container.find('.filter-content');
                             
                                     filterContent.empty();
                             
