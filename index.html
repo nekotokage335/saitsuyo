@@ -217,8 +217,10 @@
                                     $(filterButton).addClass('active');
                                 } else {
                                     $(filterButton).removeClass('active');
-                                    updateCheckboxes(column.index());
                                 }
+
+                                // チェックボックスの状態を更新
+                                updateCheckboxes(index, column.search());
                             });
 
                             // 他の列のフィルタボックスを更新する関数
