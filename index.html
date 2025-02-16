@@ -206,8 +206,10 @@
                                 $('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
                                     searchString += $(this).val() + '|';
                                 });
-
                                 column.search(searchString.slice(0, -1), true, false).draw();
+
+                                // 他の列のフィルタボックスを更新
+                                updateFilterBoxes();  // ここで他のフィルタボックスを更新する関数を呼び出し
 
                                 // フィルタが適用されているか確認
                                 if (searchString) {
@@ -216,6 +218,31 @@
                                     $(filterButton).removeClass('active');
                                 }
                             });
+
+                            // 他の列のフィルタボックスを更新する関数
+                            function updateFilterBoxes() {
+                                const filteredData = this.api().rows({ search: 'applied' }).data();
+                            
+                                this.api().columns('.filterable').every(function () {
+                                    const column = this;
+                                    const columnName = $(column.header()).text();
+                                    const filterContent = $('.filter-content').eq(column.index());
+                            
+                                    filterContent.empty();
+                            
+                                    const uniqueData = filteredData.map(row => row[column.index()])
+                                        .flat()
+                                        .flatMap(d => d.split(' '))
+                                        .filter((v, i, a) => a.indexOf(v) === i)
+                                        .sort();
+                            
+                                    uniqueData.forEach(function (d) {
+                                        const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
+                                        const label = $('<label></label>').append(checkbox).append(d); // チェックボックスと項目名を一行に配置
+                                        filterContent.append($('<div class="filter-group"></div>').append(label));
+                                    });
+                                });
+                            }
 
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
