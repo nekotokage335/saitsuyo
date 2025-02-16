@@ -130,7 +130,8 @@
     
                         const filterContainers = [];
 
-                        this.api().columns('.filterable').every(function () {
+                        //this.api().columns('.filterable').every(function () {
+                        this.api().columns('.filterable').every(function (index) {
                             const column = this;
                             const columnName = $(column.header()).text();
                             const filterContainer = $('<div class="filter-container"></div>').hide();
@@ -140,7 +141,8 @@
                             filterContainer.append(filterHeader).append(filterContent).append(filterFooter);
                             $('body').append(filterContainer);
 
-                            filterContainers.push(filterContainer);
+                            //filterContainers.push(filterContainer);
+                            filterContainers.push({ index: index, container: filterContainer });
 
                             // フィルターボタンを作成
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
@@ -177,9 +179,12 @@
                             // フィルターボタンをクリックするとフィルターボックスを表示
                             $(filterButton).on('click', function (e) {
                                 // 他のフィルターボックスを閉じる
-                                filterContainers.forEach(function(container) {
-                                    if (container !== filterContainer) {
-                                        container.hide();
+                                //filterContainers.forEach(function(container) {
+                                    //if (container !== filterContainer) {
+                                        //container.hide();
+                                filterContainers.forEach(function (containerObj) {
+                                    if (containerObj.container !== filterContainer) {
+                                        containerObj.container.hide();
                                     }
                                 });
 
