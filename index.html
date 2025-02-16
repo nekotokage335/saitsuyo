@@ -252,8 +252,10 @@
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
                                 if (!$(e.target).closest('.filter-container, .filter-button').length) {
-                                    filterContainers.forEach(function(container) {
-                                        container.hide();
+                                    //filterContainers.forEach(function(container) {
+                                    filterContainers.forEach(function(containerObj) {
+                                        //container.hide();
+                                        containerObj.container.hide();
                                     });
                                 }
                             });
