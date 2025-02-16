@@ -232,8 +232,7 @@
                                     filterContent.empty();
                             
                                     const uniqueData = filteredData.map(row => row[column.index()])
-                                        .flat()
-                                        .flatMap(d => d.split(' '))
+                                        .reduce((acc, val) => acc.concat(val.split(' ')), []) // flat()の代わりにreduceを使用
                                         .filter((v, i, a) => a.indexOf(v) === i)
                                         .sort();
                             
