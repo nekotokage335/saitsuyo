@@ -209,7 +209,7 @@
                                 column.search(searchString.slice(0, -1), true, false).draw();
 
                                 // 他の列のフィルタボックスを更新
-                                updateFilterBoxes(column.table().api());
+                                updateFilterBoxes(column.settings()[0].oInstance);
 
                                 // フィルタが適用されているか確認
                                 if (searchString) {
