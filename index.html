@@ -245,18 +245,19 @@
                             }
 
                             // フィルターボックスのチェックボックスの状態を更新する関数
-                            function updateCheckboxes(index) {
+                            function updateCheckboxes(index, searchString) {
                                 filterContainers.forEach(function(containerObj) {
                                     if (containerObj.index === index) {
                                         const filterContent = containerObj.container.find('.filter-content');
                                         filterContent.find('.filter-checkbox').each(function() {
                                             const checkbox = $(this);
                                             const value = checkbox.val();
-                                            const isChecked = column.search().split('|').includes(value);
+                                            const isChecked = searchString.includes(value);
                                             checkbox.prop('checked', isChecked);
                                         });
                                     }
                                 });
+                            }
 
                             // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
