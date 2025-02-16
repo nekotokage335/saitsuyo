@@ -147,8 +147,14 @@
                             const filterButton = $('<button class="filter-button">' + columnName + '</button>');
                             filterButtonsContainer.appendChild(filterButton[0]);
 
+                            // 全ての区を表示するために全ての区データを取得
+                            const allDistrictsData = columnName === "区" 
+                                ? table.column(index).data().unique().toArray() 
+                                : column.data().toArray().flatMap(d => d.split(' '));
+
                             // const uniqueData = column.data().unique().sort();
-                            const uniqueData = column.data().toArray()
+                            //const uniqueData = column.data().toArray()
+                            const uniqueData = allDistrictsData
                                 .flatMap(d => d.split(' '))
                                 .filter((v, i, a) => a.indexOf(v) === i)
                                 .sort();
