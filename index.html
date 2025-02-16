@@ -96,7 +96,9 @@
 
             // DataTableを適用
             $(document).ready(function() {
-                const table = $('table.display').DataTable({
+                //const table = $('table.display').DataTable({
+                let table;
+                table = $('table.display').DataTable({
                     // DataTableが初期化された後に実行
                     initComplete: function () {
 
