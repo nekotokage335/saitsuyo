@@ -5,6 +5,44 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <title>おすすめエリア</title>
     <link rel="stylesheet" href="osusume_area.css">
+    <style>
+        /* ここにCSSの変更部分を追加します */
+        .collapsible {
+            cursor: pointer;
+            padding: 10px;
+            text-align: center;
+            background-color: #3e8c48; /* 薄めの緑色 */
+            color: #f0f8f5;
+            border: 1px solid #ffffff;
+            border-radius: 4px;
+            font-weight: bold;
+            transition: background-color 0.3s ease;
+            margin-bottom: 10px;
+        }
+
+        .collapsible:hover {
+            background-color: #2c5f2d;
+        }
+
+        .content {
+            display: none;
+            overflow: hidden;
+            border: 1px solid #2c5f2d;
+            border-radius: 4px;
+            padding: 0 10px;
+            background-color: #e7f3e7;
+        }
+    </style>
+    <script>
+        document.addEventListener("DOMContentLoaded", function () {
+            var collapsible = document.querySelector(".collapsible");
+            var content = document.querySelector(".content");
+
+            collapsible.addEventListener("click", function () {
+                content.style.display = content.style.display === "none" ? "block" : "none";
+            });
+        });
+    </script>
 </head>
 <body>
     <h1>おすすめエリア</h1>
@@ -23,111 +61,115 @@
 
     <h2 id="setagaya">世田谷区</h2>
     <p><strong>世田谷区</strong>の地震危険度が低く、地盤が固い地域の中でも家賃が低いトップ10をまとめてみました。</p>
-    <table border="1">
-        <thead>
-            <tr>
-                <th>区</th>
-                <th>町</th>
-                <th>地盤</th>
-                <th>総合危険度</th>
-                <th>駅</th>
-                <th>路線</th>
-                <th>家賃(万円)</th>
-            </tr>
-        </thead>
-        <tbody>
-            <tr>
-                <td>世田谷区</td>
-                <td>上祖師谷４丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>仙川（徒歩10分圏外）</td>
-                <td>京王線</td>
-                <td>10.9</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>給田５丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>仙川（徒歩10分圏外）</td>
-                <td>京王線</td>
-                <td>10.9</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>北烏山２丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>富士見ヶ丘（徒歩10分圏外）</td>
-                <td>京王井の頭線</td>
-                <td>11.5</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>北烏山５丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>久我山（徒歩10分圏外）</td>
-                <td>京王井の頭線</td>
-                <td>11.5</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>喜多見８丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>喜多見</td>
-                <td>小田急小田原線</td>
-                <td>11.5</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>千歳台６丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>千歳烏山（徒歩10分圏外）</td>
-                <td>京王線</td>
-                <td>11.6</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>南烏山６丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>千歳烏山</td>
-                <td>京王線</td>
-                <td>11.6</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>南烏山２丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>八幡山 芦花公園 千歳烏山</td>
-                <td>京王線</td>
-                <td>12.0</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>粕谷２丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>八幡山 芦花公園</td>
-                <td>京王線</td>
-                <td>12.1</td>
-            </tr>
-            <tr>
-                <td>世田谷区</td>
-                <td>八幡山２丁目</td>
-                <td>台地1</td>
-                <td>1</td>
-                <td>八幡山（徒歩10分圏外）</td>
-                <td>京王線</td>
-                <td>12.2</td>
-            </tr>
-        </tbody>
-    </table>
+    
+    <div class="collapsible">トップ10</div>
+    <div class="content">
+        <table border="1">
+            <thead>
+                <tr>
+                    <th>区</th>
+                    <th>町</th>
+                    <th>地盤</th>
+                    <th>総合危険度</th>
+                    <th>駅</th>
+                    <th>路線</th>
+                    <th>家賃(万円)</th>
+                </tr>
+            </thead>
+            <tbody>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>上祖師谷４丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>仙川（徒歩10分圏外）</td>
+                    <td>京王線</td>
+                    <td>10.9</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>給田５丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>仙川（徒歩10分圏外）</td>
+                    <td>京王線</td>
+                    <td>10.9</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>北烏山２丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>富士見ヶ丘（徒歩10分圏外）</td>
+                    <td>京王井の頭線</td>
+                    <td>11.5</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>北烏山５丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>久我山（徒歩10分圏外）</td>
+                    <td>京王井の頭線</td>
+                    <td>11.5</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>喜多見８丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>喜多見</td>
+                    <td>小田急小田原線</td>
+                    <td>11.5</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>千歳台６丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>千歳烏山（徒歩10分圏外）</td>
+                    <td>京王線</td>
+                    <td>11.6</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>南烏山６丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>千歳烏山</td>
+                    <td>京王線</td>
+                    <td>11.6</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>南烏山２丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>八幡山 芦花公園 千歳烏山</td>
+                    <td>京王線</                    <td>12.0</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>粕谷２丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>八幡山 芦花公園</td>
+                    <td>京王線</td>
+                    <td>12.1</td>
+                </tr>
+                <tr>
+                    <td>世田谷区</td>
+                    <td>八幡山２丁目</td>
+                    <td>台地1</td>
+                    <td>1</td>
+                    <td>八幡山（徒歩10分圏外）</td>
+                    <td>京王線</td>
+                    <td>12.2</td>
+                </tr>
+            </tbody>
+        </table>
+    </div>
+
     <p>中でも<strong>南烏山６丁目</strong>・<strong>南烏山２丁目</strong>・<strong>粕谷２丁目</strong>付近は、<strong>千歳烏山駅</strong>、<strong>芦花公園駅</strong>、<strong>八幡山駅</strong>の3駅にアクセスしやすい場所に位置しており、おすすめです。</p>
     <h3>治安の良さ</h3>
     <p>治安が非常に良く、安心して暮らせる地域です。特に<strong>南烏山エリア</strong>は、犯罪がほとんど発生しておらず、女性の一人暮らしやファミリー層にも最適です。</p>
@@ -136,8 +178,5 @@
     <h3>買い物環境</h3>
     <p>各駅周辺にはスーパーやコンビニが充実しており、日常の買い物に困ることはありません。特に<strong>千歳烏山駅周辺</strong>には深夜まで営業しているスーパーや商店街があり、生活に必要な施設が整っています。</p>
     <h3>飲食環境</h3>
-    <p>飲食店のバリエーションも豊富で、商店街にはリーズナブルな飲食店が多く、外食もしやすい環境です。特に<strong>千歳烏山駅周辺</strong>は多様な飲食店が集まっており、グルメな方にも満足いただけます。</p>
-    <h3>自然環境</h3>
-    <p><strong>芦花公園駅</strong>から徒歩圏内の「<strong>蘆花恒春園</strong>」は自然が豊かで、四季折々の草花と触れ合える場所です。家族でのお出かけやリフレッシュに最適なスポットです。</p>
 </body>
 </html>
