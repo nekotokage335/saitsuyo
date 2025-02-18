@@ -33,16 +33,6 @@
             background-color: #e7f3e7;
         }
     </style>
-    <script>
-        document.addEventListener("DOMContentLoaded", function () {
-            var collapsible = document.querySelector(".collapsible");
-            var content = document.querySelector(".content");
-
-            collapsible.addEventListener("click", function () {
-                content.style.display = content.style.display === "none" ? "block" : "none";
-            });
-        });
-    </script>
 </head>
 <body>
     <h1>おすすめエリア</h1>
@@ -61,9 +51,8 @@
 
     <h2 id="setagaya">世田谷区</h2>
     <p><strong>世田谷区</strong>の地震危険度が低く、地盤が固い地域の中でも家賃が低いトップ10をまとめてみました。</p>
-    
-    <div class="collapsible">トップ10</div>
-    <div class="content">
+    <details>
+        <summary>トップ10</summary>
         <table border="1">
             <thead>
                 <tr>
@@ -168,8 +157,7 @@
                 </tr>
             </tbody>
         </table>
-    </div>
-
+    </details>
     <p>中でも<strong>南烏山６丁目</strong>・<strong>南烏山２丁目</strong>・<strong>粕谷２丁目</strong>付近は、<strong>千歳烏山駅</strong>、<strong>芦花公園駅</strong>、<strong>八幡山駅</strong>の3駅にアクセスしやすい場所に位置しており、おすすめです。</p>
     <h3>治安の良さ</h3>
     <p>治安が非常に良く、安心して暮らせる地域です。特に<strong>南烏山エリア</strong>は、犯罪がほとんど発生しておらず、女性の一人暮らしやファミリー層にも最適です。</p>
@@ -178,5 +166,7 @@
     <h3>買い物環境</h3>
     <p>各駅周辺にはスーパーやコンビニが充実しており、日常の買い物に困ることはありません。特に<strong>千歳烏山駅周辺</strong>には深夜まで営業しているスーパーや商店街があり、生活に必要な施設が整っています。</p>
     <h3>飲食環境</h3>
+
+    
 </body>
 </html>
