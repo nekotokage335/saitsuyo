@@ -1,4 +1,4 @@
-/* style.css */
+/* osusume_area.css */
 body {
     font-family: "Meiryo UI", sans-serif;
     background-color: #f0f8f5;
@@ -68,4 +68,11 @@ a {
 
 a:hover {
     text-decoration: underline;
+}
+
+strong {
+    color: #2c5f2d;
+    background-color: #e7f3e7;
+    padding: 2px 4px;
+    border-radius: 4px;
 }
