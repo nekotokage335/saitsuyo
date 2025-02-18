@@ -60,8 +60,9 @@
                 const th = document.createElement('th');
                 th.textContent = header;
                 th.classList.add('filterable');
-                console.log('Header:', header);
-                if (header === "町" || header === "駅" || header === "家賃(万円)") {
+                const trimmedHeader = header.trim();
+                if (trimmedHeader === "町" || trimmedHeader === "駅" || trimmedHeader === "家賃(万円)") {
+                //if (header === "町" || header === "駅" || header === "家賃(万円)") {
                     th.classList.remove('filterable');
                 }
                 headerRow.appendChild(th);
