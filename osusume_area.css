@@ -1,0 +1,71 @@
+/* style.css */
+body {
+    font-family: "Meiryo UI", sans-serif;
+    background-color: #f0f8f5;
+    color: #333;
+    margin: 0;
+    padding: 20px;
+}
+
+h1, h2, h3 {
+    color: #2c5f2d;
+    text-shadow: 1px 1px 2px #aaa;
+}
+
+h1 {
+    text-align: center;
+    font-size: 2em;
+    margin-bottom: 20px;
+}
+
+h2 {
+    border-bottom: 2px solid #2c5f2d;
+    padding-bottom: 5px;
+}
+
+h3 {
+    margin-top: 20px;
+    margin-bottom: 10px;
+}
+
+p {
+    line-height: 1.6;
+    margin: 10px 0;
+}
+
+ul {
+    list-style-type: square;
+    margin-left: 20px;
+}
+
+table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 20px 0;
+}
+
+table, th, td {
+    border: 1px solid #2c5f2d;
+}
+
+th, td {
+    padding: 10px;
+    text-align: left;
+}
+
+th {
+    background-color: #a8d5ba;
+}
+
+td {
+    background-color: #e7f3e7;
+}
+
+a {
+    color: #006400;
+    text-decoration: none;
+}
+
+a:hover {
+    text-decoration: underline;
+}
