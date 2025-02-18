@@ -83,6 +83,8 @@ nav {
     padding: 0; /* 余白をなくす */
     border-radius: 8px; /* 角を丸く */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
+    margin: 0 auto; /* メニュー全体を中央揃えに */
+    width: 100%; /* 幅を100%に */
 }
 
 nav ul.menu {
@@ -90,7 +92,8 @@ nav ul.menu {
     margin: 0;
     padding: 0;
     display: flex; /* フレックスボックスで横並びに */
-    justify-content: center; /* 中央に配置 */
+    justify-content: space-evenly; /* リストアイテムの間を均等に */
+    width: 100%; /* 幅を100%に */
 }
 
 nav ul.menu li {
