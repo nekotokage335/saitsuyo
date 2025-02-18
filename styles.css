@@ -188,10 +188,7 @@ table.dataTable {
 nav {
     background-color: #3e8c48; /* 薄めの緑色 */
     padding: 0; /* 余白をなくす */
-    border-radius: 8px; /* 角を丸く */
     box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
-    margin: 0 auto; /* メニュー全体を中央揃えに */
-    width: 100%; /* 幅を100%に */
 }
 
 nav ul.menu {
@@ -199,24 +196,39 @@ nav ul.menu {
     margin: 0;
     padding: 0;
     display: flex; /* フレックスボックスで横並びに */
-    justify-content: space-evenly; /* リストアイテムの間を均等に */
+    justify-content: center; /* 中央に配置 */
     width: 100%; /* 幅を100%に */
 }
 
 nav ul.menu li {
     margin: 0;
+    flex: 1; /* 各リストアイテムを均等に分配 */
 }
 
 nav ul.menu li a {
+    display: block; /* ブロック表示に変更 */
+    text-align: center; /* 中央揃え */
     color: #f0f8f5; /* 白っぽい色のテキスト */
     text-decoration: none; /* 下線をなくす */
     font-weight: bold; /* 太字にする */
-    padding: 10px 20px; /* パディングを追加 */
+    padding: 10px; /* パディングを追加 */
     border: 1px solid #ffffff; /* 白い枠線を追加 */
-    border-radius: 4px; /* 角を丸く */
     transition: background-color 0.3s ease; /* ホバー時のアニメーション */
 }
 
 nav ul.menu li a:hover {
     background-color: #2c5f2d; /* ホバー時の背景色 */
+}
+
+details summary {
+    cursor: pointer;
+    padding: 10px;
+    text-align: center;
+    background-color: #3e8c48; /* 薄めの緑色 */
+    color: #f0f8f5;
+    border: 1px solid #ffffff;
+    border-radius: 4px;
+    font-weight: bold;
+    transition: background-color 0.3s ease;
+    margin-bottom: 10px;
 }
