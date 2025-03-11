@@ -141,3 +141,20 @@ details table {
     border: 1px solid #2c5f2d;
     border-radius: 0 0 4px 4px; /* 角を丸く */
 }
+
+.section-box {
+    border: 2px solid #2c5f2d;
+    background-color: #e7f3e7;
+    padding: 15px;
+    border-radius: 8px;
+    margin-bottom: 20px;
+    box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
+}
+.section-box h2 {
+    background-color: #3e8c48;
+    color: #f0f8f5;
+    padding: 10px;
+    border-radius: 4px;
+    text-align: center;
+}
+
