@@ -186,9 +186,8 @@ table.dataTable {
 
 /* ナビゲーションバーのスタイル */
 nav {
-    background-color: #3e8c48; /* 薄めの緑色 */
+    background-color: transparent; /* 背景色を透明に */
     padding: 0; /* 余白をなくす */
-    box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1); /* 影をつける */
 }
 
 nav ul.menu {
@@ -196,29 +195,26 @@ nav ul.menu {
     margin: 0;
     padding: 0;
     display: flex; /* フレックスボックスで横並びに */
-    justify-content: space-around;
-    flex-wrap:wrap;
-    width: 100%; /* 幅を100%に */
+    justify-content: flex-start; /* 左寄せ */
+    gap: 10px; /* 各要素の間隔を調整 */
+    width: auto; /* 必要な幅だけに */
 }
 
 nav ul.menu li {
     margin: 0;
-    flex: 1;
 }
 
 nav ul.menu li a {
-    display: block; /* ブロック表示に変更 */
-    text-align: left; /* 中央揃え */
-    color: #f0f8f5; /* 白っぽい色のテキスト */
+    display: inline; /* インライン表示に変更 */
+    color: #333; /* シンプルな濃いグレーの文字 */
     text-decoration: none; /* 下線をなくす */
-    font-weight: bold; /* 太字にする */
-    padding: 10px; /* パディングを追加 */
-    border: 1px solid #ffffff; /* 白い枠線を追加 */
-    transition: background-color 0.3s ease; /* ホバー時のアニメーション */
+    font-weight: normal; /* 標準の文字の太さ */
+    font-size: 1rem; /* 通常の文字サイズ */
+    transition: color 0.3s ease; /* ホバー時の文字色変更をアニメーション */
 }
 
 nav ul.menu li a:hover {
-    background-color: #2c5f2d; /* ホバー時の背景色 */
+    color: #2c5f2d; /* ホバー時に緑色に変更 */
 }
 
 details summary {
