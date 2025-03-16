@@ -122,7 +122,6 @@ h1, h3 {
 }
 
 .dataTables_length label {
-    font-size: 1em; /* フォントサイズを調整 */
     color: #333; /* 文字色を調整 */
 }
 
