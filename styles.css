@@ -196,7 +196,7 @@ nav ul.menu {
     margin: 0;
     padding: 0;
     display: flex; /* フレックスボックスで横並びに */
-    justify-content: start; /* 中央に配置 */
+    justify-content: start;
     width: 100%; /* 幅を100%に */
 }
 
