@@ -15,7 +15,7 @@ iframe {
 }
 
 .form-wrapper {
-    max-width: 800px;
+    width: 100%;
     margin: auto;
     background-color: #e7f3e7;
     padding: 20px;
