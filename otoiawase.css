@@ -35,24 +35,6 @@ iframe {
     box-shadow: 2px 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.form-wrapper {
-    width: 100%;
-    margin: 0;
-    background-color: #e7f3e7;
-    padding: 20px;
-    border: 2px solid #2c5f2d;
-    border-radius: 8px;
-    box-shadow: 2px 2px 8px rgba(0, 0, 0, 0.2);
-}
-
-.form-header {
-    color: #2c5f2d;
-    text-align: left;
-    margin-bottom: 10px;
-    border-bottom: 2px solid #2c5f2d;
-    padding-bottom: 5px;
-}
-
 /* ナビゲーションバーのスタイル */
 nav {
     background-color: #3e8c48; /* 薄めの緑色 */
