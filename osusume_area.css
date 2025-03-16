@@ -136,7 +136,6 @@ nav ul.menu li a {
     text-decoration: none; /* 下線をなくす */
     font-weight: bold; /* 太字にする */
     padding: 10px; /* パディングを追加 */
-    border: 1px solid #ffffff; /* 白い枠線を追加 */
     transition: background-color 0.3s ease; /* ホバー時のアニメーション */
 }
 
