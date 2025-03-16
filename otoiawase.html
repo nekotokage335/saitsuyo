@@ -14,66 +14,50 @@
         }
 
         .form-container {
+            max-width: 600px;
+            margin: auto;
             background: #fff;
+            padding: 20px;
             border-radius: 8px;
             box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
-            padding: 20px;
-            max-width: 400px;
-            margin: auto;
         }
 
-        input[type="email"], textarea {
+        iframe {
             width: 100%;
-            padding: 10px;
-            margin: 10px 0;
-            border: 1px solid #ccc;
-            border-radius: 4px;
-            box-sizing: border-box;
-        }
-
-        button {
-            background-color: #4CAF50;
-            color: white;
-            padding: 10px 20px;
+            height: 500px;
             border: none;
-            border-radius: 4px;
-            cursor: pointer;
         }
 
-        button:hover {
-            background-color: #45a049;
+        .thank-you-message {
+            display: none; /* 初期状態は非表示 */
+            background: #e8f5e9;
+            border: 1px solid #4CAF50;
+            padding: 20px;
+            border-radius: 8px;
+            margin-top: 20px;
         }
     </style>
     <script>
-        function handleSubmit(event) {
-            event.preventDefault(); // デフォルトのフォーム送信をキャンセル
-            const form = event.target;
-            
-            fetch(form.action, {
-                method: form.method,
-                body: new FormData(form)
-            }).then(response => {
-                // フォーム送信成功時の処理
-                window.location.href = "thank_you.html"; // リダイレクト
-            }).catch(error => {
-                console.error("送信エラー:", error);
-                alert("送信に失敗しました。もう一度お試しください。");
-            });
+        function showThankYouMessage() {
+            // iframeのフォーム送信完了後に呼び出す
+            document.getElementById("form-container").style.display = "none";
+            document.querySelector(".thank-you-message").style.display = "block";
         }
     </script>
 </head>
 <body>
     <h1>お問い合わせフォーム</h1>
-    <div class="form-container">
-        <form action="https://docs.google.com/forms/u/0/d/e/1FAIpQLSe1VkbeU6vkeJfvtrYBzYkwyKIAhEJQcdN03XMfUgXhL5r6Uw/formResponse" method="POST" onsubmit="handleSubmit(event)">
-            <label for="email">メールアドレス</label>
-            <input type="email" name="entry.704328589" id="email" required>
+    <div id="form-container" class="form-container">
+        <iframe 
+            src="https://docs.google.com/forms/d/e/1FAIpQLSe1VkbeU6vkeJfvtrYBzYkwyKIAhEJQcdN03XMfUgXhL5r6Uw/viewform?embedded=true" 
+            onload="this.onload=null; this.onreadystatechange=function() { if (this.readyState === 'complete') showThankYouMessage(); }">
+        </iframe>
+    </div>
 
-            <label for="message">お問い合わせ内容</label>
-            <textarea name="entry.761618839" id="message" rows="5" required></textarea>
-
-            <button type="submit">送信</button>
-        </form>
+    <div class="thank-you-message">
+        <h2>送信ありがとうございます！</h2>
+        <p>内容を受け付けました。後ほどご連絡いたします。</p>
+        <p><a href="index.html">トップページに戻る</a></p>
     </div>
 </body>
 </html>
