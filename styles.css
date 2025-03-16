@@ -176,7 +176,7 @@ table.dataTable td:last-of-type, table.dataTable th:last-of-type {
 
 /* テーブルの全体スタイル */
 table.dataTable {
-    width: 100%;
+    width: 90%;
     border-collapse: collapse;
     margin: 20px 0;
     font-size: 1em;
