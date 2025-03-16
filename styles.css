@@ -202,7 +202,7 @@ nav ul.menu {
 
 nav ul.menu li {
     margin: 0;
-    flex: 1; /* 各リストアイテムを均等に分配 */
+    flex: 0 1 auto; /* 必要な幅のみ確保し高さを自動調整 */
 }
 
 nav ul.menu li a {
