@@ -207,7 +207,7 @@ nav ul.menu li {
 
 nav ul.menu li a {
     display: block; /* ブロック表示に変更 */
-    text-align: center; /* 中央揃え */
+    text-align: left; /* 中央揃え */
     color: #f0f8f5; /* 白っぽい色のテキスト */
     text-decoration: none; /* 下線をなくす */
     font-weight: bold; /* 太字にする */
@@ -226,7 +226,6 @@ details summary {
     text-align: center;
     background-color: #3e8c48; /* 薄めの緑色 */
     color: #f0f8f5;
-    border: 1px solid #ffffff;
     border-radius: 4px;
     font-weight: bold;
     transition: background-color 0.3s ease;
