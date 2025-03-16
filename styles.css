@@ -197,12 +197,13 @@ nav ul.menu {
     padding: 0;
     display: flex; /* フレックスボックスで横並びに */
     justify-content: space-around;
+    flex-wrap:wrap;
     width: 100%; /* 幅を100%に */
 }
 
 nav ul.menu li {
     margin: 0;
-    flex: 1 1 auto; /* 必要な幅のみ確保し高さを自動調整 */
+    flex: 1;
 }
 
 nav ul.menu li a {
