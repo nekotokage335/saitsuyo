@@ -1,27 +1,26 @@
 <!DOCTYPE html>
 <html lang="ja">
+
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0, viewport-fit=cover">
     <title>【東京23区】地震に強い住所表【地盤・危険度・最寄り駅・家賃から見る】</title>
-    <!-- DataTablesのスタイルシートを追加 -->
+
+    <!-- DataTables & Extensions CSS -->
     <link rel="stylesheet" href="https://cdn.datatables.net/1.10.24/css/jquery.dataTables.min.css">
     <link rel="stylesheet" href="https://cdn.datatables.net/select/1.3.3/css/select.dataTables.min.css">
-    <!-- 別のCSSファイルをリンク -->
-    <link rel="stylesheet" href="styles.css">
-    <!-- jQueryとDataTablesのJavaScriptを追加 -->
+    <link rel="stylesheet" href="https://cdn.datatables.net/buttons/1.7.0/css/buttons.dataTables.min.css">
+    <!-- jQuery & DataTables JS -->
     <script src="https://code.jquery.com/jquery-3.5.1.js"></script>
     <script src="https://cdn.datatables.net/1.10.24/js/jquery.dataTables.min.js"></script>
     <script src="https://cdn.datatables.net/select/1.3.3/js/dataTables.select.min.js"></script>
-    <script async src="https://www.googletagmanager.com/gtag/js?id=G-XC4BSW2LLQ"></script>
-    <script>
-      window.dataLayer = window.dataLayer || [];
-      function gtag(){dataLayer.push(arguments);}
-      gtag('js', new Date());
-    
-      gtag('config', 'G-XC4BSW2LLQ');
-    </script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/dataTables.buttons.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.html5.min.js"></script>
+    <script src="https://cdn.datatables.net/buttons/1.7.0/js/buttons.print.min.js"></script>
+    <!-- 別のCSSファイルをリンク -->
+    <link rel="stylesheet" href="styles.css">
 </head>
+
 <body>
     <h1>【東京23区】地震に強い住所表</h1>
     <nav>
@@ -33,30 +32,59 @@
         </ul>
     </nav>
     <ul>
-        <li>地震危険度の出典: <cite><a href="https://www.funenka.metro.tokyo.lg.jp/area-hazard-level/regional-risk-list/">東京都不燃化ポータルサイト 地域危険度一覧表</a></cite></li>
-        <li>数字が小さい（1に近い）ほど危険度が低く、数字が大きい（5に近い）ほど危険度が高いです。</li>
-        <li>家賃の出典: <cite><a href="https://suumo.jp/chintai/soba/tokyo/ensen/">SUUMO 東京都の路線・沿線から家賃相場・賃料相場情報を探す</a></cite></li>
-        <li>家賃は SUUMO の駅ごとの家賃相場を参考に計算しています。</li>
+        <li>使い方: 引っ越し時など、住む場所を探すのに役立てていただければ幸いです。区・地盤・危険度・路線などでフィルタをかけたり、家賃でソートしたりといった使い方ができます。</li>
+        <li>地盤・危険度の出典: <cite><a href="https://www.funenka.metro.tokyo.lg.jp/area-hazard-level/regional-risk-list/">東京都不燃化ポータルサイト 地域危険度一覧表</a></cite></li>
     </ul>
-    <div class="option_box">
-        <h3>列フィルター</h3>
-        <div id="columns-container"></div>
+    <details>
+        <summary>地盤の説明</summary>
+        <ul>
+            <li>台地: 固く揺れが少ない地盤</li>
+            <li>沖積低地: 土砂が堆積して形成された軟弱な地盤</li>
+            <li>谷底低地: 台地の間にある谷底の軟弱な地盤</li>
+            <li>末尾の数字が小さいほど揺れも小さい</li>
+        </ul>
+    </details>
+    <details>
+        <summary>危険度の説明</summary>
+        <ul>
+            <li>1〜5に分類されており、数字が小さいほど安全です。</li>
+        </ul>
+    </details>
+    <ul>
+        <li>家賃の出典: <cite><a href="https://suumo.jp/chintai/soba/tokyo/ensen/">SUUMO 東京都の路線・沿線から家賃相場・賃料相場情報を探す</a></cite></li>
+    </ul>
+    <details>
+        <summary>家賃の計算</summary>
+        <ul>
+            <li>駅ごとの1LDK/2LDK/2DKの家賃相場をもとに計算しています。</li>
+            <li>同じ町内に複数の最寄り駅がある場合は、距離の近さを重みとした加重平均を使用。</li>
+        </ul>
+    </details>
+    <div id="loading">読み込み中...</div>
+
+    <div class="content" style="display:none;">
+        <aside class="sidebar">
+            <section class="option_box">
+                <h3>列フィルター</h3>
+                <div id="columns-container"></div>
+            </section>
+            <section class="option_box">
+                <h3>検索フィルター</h3>
+                <div id="filter-buttons"></div>
+            </section>
+        </aside>
+        <main class="main-content">
+            <div id="tables"></div>
+        </main>
     </div>
-    <div class="option_box">
-        <h3>検索フィルター</h3>
-        <div id="filter-buttons"></div>
-    </div>
-    <div id="tables"></div>
 
     <script>
-        // CSVファイルを読み込む関数
         async function loadCSV(file) {
             const response = await fetch(file);
             const data = await response.text();
             return data;
         }
 
-        // CSVデータを解析し、HTMLテーブルに変換する関数
         async function parseCSV(data) {
             const rows = data.split('\n');
             const headers = rows[0].split(',');
@@ -66,14 +94,12 @@
             const thead = document.createElement('thead');
             const tbody = document.createElement('tbody');
 
-            // ヘッダー行を作成
             const headerRow = document.createElement('tr');
-            headers.forEach((header, index) => {
+            headers.forEach(header => {
                 const th = document.createElement('th');
                 th.textContent = header;
                 th.classList.add('filterable');
                 if (header.includes("町") || header.includes("駅") || header.includes("家賃")) {
-                //if (header === "町" || header === "駅" || header === "家賃(万円)") {
                     th.classList.remove('filterable');
                 }
                 headerRow.appendChild(th);
@@ -81,7 +107,6 @@
             thead.appendChild(headerRow);
             table.appendChild(thead);
 
-            // データ行を作成
             for (let i = 1; i < rows.length; i++) {
                 if (rows[i].trim() === '') continue;
                 const row = rows[i].split(',');
@@ -98,159 +123,209 @@
             return table;
         }
 
-        // CSVファイルを表示する関数
         async function displayCSVFiles() {
-            const csvFiles = ["地域危険度一覧表.csv"]; // フォルダ内のCSVファイル名をここに列挙
+            const csvFiles = ["地域危険度一覧表.csv"];
             const container = document.getElementById('tables');
             const columnsContainer = document.getElementById('columns-container');
             const filterButtonsContainer = document.getElementById('filter-buttons');
+            const loading = document.getElementById('loading');
+            const content = document.querySelector('.content');
 
             for (const file of csvFiles) {
                 const data = await loadCSV(file);
                 const table = await parseCSV(data);
-
                 container.appendChild(table);
-                container.appendChild(document.createElement('br'));
             }
 
-            // DataTableを適用
-            $(document).ready(function() {
+            $(document).ready(function () {
                 const table = $('table.display').DataTable({
-                    // DataTableが初期化された後に実行
-                    initComplete: function () {
+                    dom: 'Bfrtip',
+                    buttons: ['copy', 'csv', 'excel', 'pdf', 'print'],
+                    responsive: true,
+columnDefs: [
+                        {
+                            targets: [3, 4, 5], // 「建物倒壊危険度」「火災危険度」「総合危険度」列のインデックス
+                            createdCell: function (td, cellData) {
+                                const dangerLevel = parseInt(cellData, 10); // セル内の値を取得
+                                if (dangerLevel >= 1 && dangerLevel <= 5) {
+                                    $(td).addClass(`heatmap-level-${dangerLevel} heatmap-cell`);
+                                }
+                            }
+                        },
+                        {
+                            targets: 2, // 「地形タイプ」のインデックス
+                            createdCell: function (td, cellData) {
+                                const landType = cellData.trim(); // セル内の文字列を取得
+                                $(td).removeClass().addClass('land-type-cell'); // 初期化
 
-                        // 初期化時に特定の列を非表示に設定
-                        this.api().columns().every(function (index) {
-                            const column = this;
-                            const columnName = $(column.header()).text();
-                            if (columnName === "建物倒壊危険度" || columnName === "火災危険度") {
-                                column.visible(false);
+                                // 地形タイプに応じてクラスを付加
+                                if (landType === '台地1') {
+                                    $(td).addClass('land-type-taichi1');
+                                } else if (landType === '台地2') {
+                                    $(td).addClass('land-type-taichi2');
+                                } else if (landType === '沖積低地1') {
+                                    $(td).addClass('land-type-chiku1');
+                                } else if (landType === '沖積低地2') {
+                                    $(td).addClass('land-type-chiku2');
+                                } else if (landType === '沖積低地3') {
+                                    $(td).addClass('land-type-chiku3');
+                                } else if (landType === '沖積低地4') {
+                                    $(td).addClass('land-type-chiku4');
+                                } else if (landType === '沖積低地5') {
+                                    $(td).addClass('land-type-chiku5');
+                                } else if (landType === '谷底低地1') {
+                                    $(td).addClass('land-type-tani1');
+                                } else if (landType === '谷底低地2') {
+                                    $(td).addClass('land-type-tani2');
+                                } else if (landType === '谷底低地3') {
+                                    $(td).addClass('land-type-tani3');
+                                }
+                            }
+                        }
+                    ],
+                    drawCallback: function () {
+                        // 描画後にセルの色を再適用
+                        this.api()
+                        .rows()
+                        .nodes()
+                        .to$()
+                        .find('td:nth-child(4), td:nth-child(5), td:nth-child(6)') // インデックス3, 4, 5（1始まりなので+1）
+                        .each(function () {
+                            const dangerLevel = parseInt($(this).text(), 10);
+                            if (dangerLevel >= 1 && dangerLevel <= 5) {
+                                $(this)
+                                    .removeClass() // 既存のクラスをクリア
+                                    .addClass(`heatmap-level-${dangerLevel} heatmap-cell`);
                             }
                         });
 
-                        // 各列のチェックボックスを作成
-                        this.api().columns().every(function (index) {
+                        // インデックス2（3列目）の地形タイプに応じたクラスを再適用
+                        this.api()
+                        .rows()
+                        .nodes()
+                        .to$()
+                        .find('td:nth-child(3)') // インデックス2（1始まりで+1）
+                        .each(function () {
+                            const landType = $(this).text().trim();
+
+                            $(this).removeClass().addClass('land-type-cell'); // 初期化
+                            if (landType === '台地1') {
+                                $(this).addClass('land-type-taichi1');
+                            } else if (landType === '台地2') {
+                                $(this).addClass('land-type-taichi2');
+                            } else if (landType === '沖積低地1') {
+                                $(this).addClass('land-type-chiku1');
+                            } else if (landType === '沖積低地2') {
+                                $(this).addClass('land-type-chiku2');
+                            } else if (landType === '沖積低地3') {
+                                $(this).addClass('land-type-chiku3');
+                            } else if (landType === '沖積低地4') {
+                                $(this).addClass('land-type-chiku4');
+                            } else if (landType === '沖積低地5') {
+                                $(this).addClass('land-type-chiku5');
+                            } else if (landType === '谷底低地1') {
+                                $(this).addClass('land-type-tani1');
+                            } else if (landType === '谷底低地2') {
+                                $(this).addClass('land-type-tani2');
+                            } else if (landType === '谷底低地3') {
+                                $(this).addClass('land-type-tani3');
+                            }
+                        });
+                    },
+                    initComplete: function () {
+                        const dtApi = this.api();
+
+                        // --- 列フィルター修正 ---
+                        dtApi.columns().every(function (index) {
                             const column = this;
                             const columnName = $(column.header()).text();
-
-                            // チェックボックスを作成し、特定の列名の場合はデフォルトでチェックを外す
-                            const checkedState = (columnName === "建物倒壊危険度" || columnName === "火災危険度") ? false : true;
-                            const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '">').val(columnName).prop('checked', checkedState);
+                            const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '" checked>');
                             const label = $('<label></label>').append(checkbox).append(columnName);
                             const columnGroup = $('<div class="column-group"></div>').append(label);
                             $('#columns-container').append(columnGroup);
-                        
-                            // チェックボックスの状態によって列の表示/非表示を切り替える
+
                             checkbox.on('change', function () {
                                 const colIdx = $(this).data('column');
                                 table.column(colIdx).visible($(this).prop('checked'));
                             });
                         });
-    
-                        const filterContainers = [];
 
-                        this.api().columns('.filterable').every(function () {
+                        // --- 検索フィルターボックス生成 ---
+                        const filterContainers = [];
+                        dtApi.columns('.filterable').every(function () {
                             const column = this;
                             const columnName = $(column.header()).text();
-                            const filterContainer = $('<div class="filter-container"></div>').hide();
-                            const filterHeader = $('<div class="filter-header"></div>');
-                            const filterFooter = $('<div class="filter-footer"></div>');
+                            const filterContainer = $('<div class="filter-container"></div>');
+
+                            const filterHeader = $('<div class="filter-header"><button class="close-filter">&times;</button></div>');
                             const filterContent = $('<div class="filter-content"></div>');
-                            filterContainer.append(filterHeader).append(filterContent).append(filterFooter);
-                            $('body').append(filterContainer);
-
-                            filterContainers.push(filterContainer);
-
-                            // フィルターボタンを作成
-                            const filterButton = $('<button class="filter-button">' + columnName + '</button>');
-                            filterButtonsContainer.appendChild(filterButton[0]);
-
-                            // const uniqueData = column.data().unique().sort();
-                            const uniqueData = column.data().toArray()
-                                .flatMap(d => d.split(' ')) // ここで「・」で分割された全ての値を取得
-                                .filter((v, i, a) => a.indexOf(v) === i) // 重複を取り除く
-                                .sort();
-
-                            // 全選択と選択クリアボタンをフィルターボックス内に追加
                             const filterActionButtons = $('<div class="filter-action-buttons"></div>');
                             const selectAllButton = $('<button class="select-all">全選択</button>');
                             const clearAllButton = $('<button class="clear-all">選択クリア</button>');
+
                             filterActionButtons.append(selectAllButton).append(clearAllButton);
-                            filterHeader.append(filterActionButtons);
+                            filterContainer.append(filterHeader).append(filterActionButtons).append(filterContent);
+                            $('body').append(filterContainer);
+                            filterContainers.push(filterContainer);
 
-                            // 閉じるボタンを追加
-                            const closeButton = $('<button class="close-filter">閉じる</button>');
-                            filterFooter.append(closeButton);
+                            const filterButton = $('<button class="filter-button">' + columnName + '</button>');
+                            $('#filter-buttons').append(filterButton);
 
-                            // 閉じるボタンをクリックするとフィルターボックスを非表示にする
-                            $(closeButton).on('click', function () {
-                                filterContainer.hide();
-                            });
+                            const uniqueData = column.data().toArray()
+                                .flatMap(d => d.split(' '))
+                                .filter((v, i, a) => a.indexOf(v) === i)
+                                .sort();
 
                             uniqueData.forEach(function (d) {
                                 const checkbox = $('<input type="checkbox" class="filter-checkbox" data-column="' + column.index() + '">').val(d);
-                                const label = $('<label></label>').append(checkbox).append(d); // チェックボックスと項目名を一行に配置
+                                const label = $('<label></label>').append(checkbox).append(d);
                                 filterContent.append($('<div class="filter-group"></div>').append(label));
                             });
 
-                            // フィルターボタンをクリックするとフィルターボックスを表示
+                            // === フィルターボタンの挙動 ===
                             $(filterButton).on('click', function (e) {
-                                // 他のフィルターボックスを閉じる
-                                filterContainers.forEach(function(container) {
-                                    if (container !== filterContainer) {
-                                        container.hide();
-                                    }
-                                });
-
-                                filterContainer.toggle().css({
-                                    top: e.pageY,
-                                    left: e.pageX
-                                });
+                                filterContainers.forEach(c => c.removeClass('show'));
+                                filterContainer.css({ top: e.pageY, left: e.pageX }).addClass('show');
                             });
 
-                            // 全選択ボタンをクリックするとすべてのチェックボックスを選択
-                            $(selectAllButton).on('click', function () {
+                            filterContainer.find('.close-filter').on('click', function () {
+                                filterContainer.removeClass('show');
+                            });
+
+                            selectAllButton.on('click', function () {
                                 filterContainer.find('.filter-checkbox').prop('checked', true).change();
                             });
 
-                            // 選択クリアボタンをクリックするとすべてのチェックボックスを解除
-                            $(clearAllButton).on('click', function () {
+                            clearAllButton.on('click', function () {
                                 filterContainer.find('.filter-checkbox').prop('checked', false).change();
                             });
 
-                            // チェックボックスの値に基づいてフィルタリング
-                            $('.filter-checkbox').on('change', function () {
+                            filterContainer.on('change', '.filter-checkbox', function () {
                                 let searchString = '';
                                 $('.filter-checkbox[data-column="' + column.index() + '"]:checked').each(function () {
                                     searchString += $(this).val() + '|';
                                 });
-
                                 column.search(searchString.slice(0, -1), true, false).draw();
-
-                                // フィルタが適用されているか確認
-                                if (searchString) {
-                                    $(filterButton).addClass('active');
-                                } else {
-                                    $(filterButton).removeClass('active');
-                                }
+                                filterButton.toggleClass('active', searchString !== '');
                             });
 
-                            // フィルターボックス以外をクリックすると非表示
                             $(document).on('click', function (e) {
                                 if (!$(e.target).closest('.filter-container, .filter-button').length) {
-                                    filterContainers.forEach(function(container) {
-                                        container.hide();
-                                    });
+                                    filterContainers.forEach(c => c.removeClass('show'));
                                 }
                             });
                         });
                     }
                 });
+
+                loading.style.display = 'none';
+                content.style.display = 'flex';
             });
         }
 
-        // CSVファイルを表示する関数を呼び出す
         displayCSVFiles();
     </script>
+
 </body>
+
 </html>

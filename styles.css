@@ -9,181 +9,11 @@ body {
     line-height: 1.6;
 }
 
-h1, h3 {
+h1 {
     color: #005f4b; /* 緑の基調色 */
     text-align: left;
 }
 
-.option_box {
-    background-color: #e3f2fd;
-    padding: 10px;
-    border-radius: 5px;
-    margin-bottom: 20px;
-}
-
-/* 列フィルター内の各列のグループを横並びにする */
-.column-group {
-    display: flex;
-    align-items: center;
-    margin-right: 10px; /* 各列の間にマージンを追加 */
-}
-
-/* 列フィルターのコンテナをフレックスボックスとして設定 */
-#columns-container {
-    display: flex;
-    flex-wrap: wrap; /* 画面幅に収まるように折り返しを許可 */
-}
-
-.filter-button {
-    background-color: #00796b;
-    color: #fff;
-    border: none;
-    padding: 10px 15px;
-    margin: 5px;
-    cursor: pointer;
-    border-radius: 5px;
-    transition: background-color 0.3s ease;
-}
-
-.filter-button:hover {
-    background-color: #005f4b;
-}
-
-/* フィルタがかかっているときのスタイル */
-.filter-button.active {
-    background-color: #ffeb3b; /* 黄色に変更 */
-    color: #000;
-}
-
-.filter-container {
-    background-color: #ffffff;
-    border: 1px solid #ccc;
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
-    position: absolute;
-    z-index: 10;
-    max-height: 300px;
-    overflow-y: auto;
-    padding: 10px;
-}
-
-.filter-header, .filter-footer {
-    display: flex;
-    justify-content: space-between;
-    align-items: center;
-}
-
-.filter-content {
-    margin: 10px 0;
-}
-
-.filter-group {
-    display: flex;
-    align-items: center;
-    margin: 5px 0;
-}
-
-.filter-action-buttons {
-    display: flex;
-    justify-content: space-between;
-    margin-bottom: 10px;
-}
-
-.filter-action-buttons button {
-    background-color: #00796b;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.filter-action-buttons button:hover {
-    background-color: #005f4b;
-}
-
-.close-filter {
-    background-color: #e57373;
-    color: white;
-    border: none;
-    padding: 5px 10px;
-    cursor: pointer;
-    border-radius: 5px;
-}
-
-.close-filter:hover {
-    background-color: #d32f2f;
-}
-
-/* DataTablesの表示に関するスタイル調整 */
-
-/* "Show entries" ドロップダウンのスタイル */
-.dataTables_length {
-    margin-bottom: 20px; /* テーブルとエントリー表示の間隔を広げる */
-}
-
-.dataTables_length label {
-    color: #333; /* 文字色を調整 */
-}
-
-/* テーブル全体のスタイル */
-.dataTables_wrapper {
-    margin-top: 20px; /* テーブルの上部に余白を追加 */
-}
-
-/* テーブルヘッダーのスタイル */
-.dataTables_wrapper .dataTables_scrollHead {
-    background-color: #2e7d32; /* 濃い緑の背景色 */
-    color: white; /* ヘッダーの文字色 */
-    text-align: left; /* テキストの配置を左揃え */
-    padding: 10px; /* パディングを追加 */
-    border-bottom: 2px solid #005005; /* ボーダーの追加 */
-}
-
-/* テーブルボディのスタイル */
-.dataTables_wrapper .dataTables_scrollBody {
-    background-color: #e8f5e9; /* 薄い緑の背景色 */
-}
-
-/* テーブル行のスタイル */
-table.dataTable tbody tr {
-    background-color: #ffffff; /* 行の背景色 */
-    color: #333; /* 行の文字色 */
-    border-bottom: 1px solid #ddd; /* 行のボーダー */
-}
-
-table.dataTable tbody tr:nth-of-type(even) {
-    background-color: #f1f8e9; /* 偶数行の背景色 */
-}
-
-table.dataTable tbody tr:hover {
-    background-color: #c8e6c9; /* ホバー時の背景色 */
-}
-
-/* テーブルセルのスタイル */
-table.dataTable td, table.dataTable th {
-    padding: 12px 15px; /* セルのパディング */
-    border-right: 1px solid #ddd; /* セルのボーダー */
-}
-
-table.dataTable th {
-    font-weight: bold; /* ヘッダーセルのフォントウェイト */
-}
-
-table.dataTable td:last-of-type, table.dataTable th:last-of-type {
-    border-right: none; /* 最後のセルのボーダーを消す */
-}
-
-/* テーブルの全体スタイル */
-table.dataTable {
-    width: 100%;
-    border-collapse: collapse;
-    margin: 20px 0;
-    font-size: 1em;
-    min-width: 400px;
-    box-shadow: 0 0 20px rgba(0, 0, 0, 0.1); /* ボックスシャドウ */
-}
-
-/* ナビゲーションバーのスタイル */
 nav {
     background-color: #3e8c48; /* 薄めの緑色 */
     padding: 0; /* 余白をなくす */
@@ -229,3 +59,216 @@ details summary {
     transition: background-color 0.3s ease;
     margin-bottom: 10px;
 }
+
+
+.content {
+    display: flex;
+    margin-top: 20px;
+}
+
+.sidebar {
+    width: 250px;
+    padding: 1rem;
+    border-right: 1px solid #ddd;
+    background: #f9f9f9;
+}
+
+.main-content {
+    flex: 1;
+    padding: 1rem;
+}
+
+.option_box {
+    margin-bottom: 1.5rem;
+}
+
+#loading {
+    font-size: 1.5rem;
+    color: #555;
+    text-align: center;
+    padding: 50px;
+}
+
+/* フィルターボックス */
+.filter-container {
+    position: absolute;
+    background: #fff;
+    border: 1px solid #ccc;
+    box-shadow: 0 2px 10px rgba(0, 0, 0, 0.15);
+    width: 250px;
+    padding: 10px;
+    border-radius: 5px;
+    z-index: 1000;
+    display: none;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.filter-container.show {
+    display: block;
+    opacity: 1;
+}
+
+.filter-header {
+    display: flex;
+    justify-content: flex-end;
+}
+
+.close-filter {
+    background: none;
+    border: none;
+    font-size: 1.2rem;
+    cursor: pointer;
+    color: #333;
+}
+
+.filter-content {
+    max-height: 200px;
+    overflow-y: auto;
+    margin-top: 5px;
+    padding-right: 5px;
+}
+
+.filter-group {
+    display: flex;
+    align-items: center;
+    margin-bottom: 5px;
+}
+
+.filter-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+.filter-action-buttons {
+    display: flex;
+    justify-content: space-between;
+    margin-bottom: 5px;
+}
+
+.filter-action-buttons button {
+    font-size: 0.8rem;
+    padding: 2px 5px;
+    cursor: pointer;
+}
+
+.filter-button.active {
+    background-color: #007bff;
+    color: #fff;
+}
+
+.filter-button {
+    margin-bottom: 5px;
+    padding: 5px 10px;
+    background: #f1f1f1;
+    border: 1px solid #ccc;
+    cursor: pointer;
+    display: inline-block;
+    border-radius: 3px;
+}
+
+.filter-button:hover {
+    background: #ddd;
+}
+
+/* 列フィルター用 */
+.column-group {
+    margin-bottom: 5px;
+}
+
+.column-group label {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-size: 0.9rem;
+}
+
+/* 各危険度レベルに基づく背景色 */
+.heatmap-cell {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.heatmap-level-1 {
+    background-color: #CCFFFF;
+    color: black;
+}
+
+.heatmap-level-2 {
+    background-color: #669966;
+    color: black;
+}
+
+.heatmap-level-3 {
+    background-color: #FF9933;
+    color: black;
+}
+
+.heatmap-level-4 {
+    background-color: #FF0000;
+    color: black;
+}
+
+.heatmap-level-5 {
+    background-color: #800000;
+}
+
+/* 各地盤レベルに基づく背景色 */
+.land-type-cell {
+    color: white;
+    text-align: center;
+    font-weight: bold;
+}
+
+.land-type-taichi1 {
+    background-color: #3399FF;
+    color: black;
+}
+
+.land-type-taichi2 {
+    background-color: #339966;
+    color: black;
+}
+
+.land-type-chiku1 {
+    background-color: #6600CC;
+}
+
+.land-type-chiku2 {
+    background-color: #CCFF66;
+    color: black;
+}
+
+.land-type-chiku3 {
+    background-color: #FFFF66;
+    color: black;
+}
+
+.land-type-chiku4 {
+    background-color: #FFCC99;
+    color: black;
+}
+
+.land-type-chiku5 {
+    background-color: #FF9999;
+    color: black;
+}
+
+.land-type-tani1 {
+    background-color: #CCFFFF;
+    color: black;
+}
+
+.land-type-tani2 {
+    background-color: #CCCCFF;
+    color: black;
+}
+
+.land-type-tani3 {
+    background-color: #FF00FF;
+    color: black;
+}
+
