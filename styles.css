@@ -272,3 +272,555 @@ details summary {
     color: black;
 }
 
+/* 路線のカラーコード指定 */
+.line-JR上野東京ライン {
+    background-color: #8F0079;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR中央線{
+    background-color: #EB5C01;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR京浜東北線{
+    background-color: #00A7E3;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR京葉線{
+    background-color: #CF1225;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR南武線{
+    background-color: #FFE400;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR埼京線{
+    background-color: #00AC84;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR宇都宮線{
+    background-color: #FF9845;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR山手線{
+    background-color: #85C023;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR常磐線各駅停車{
+    background-color: #9E9E9F;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR常磐線快速{
+    background-color: #00C18A;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR東海道本線{
+    background-color: #FF9845;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR横須賀線{
+    background-color: #0074BE;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR湘南新宿ライン{
+    background-color: #DE0515;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR総武線{
+    background-color: #FFE500;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR総武線快速{
+    background-color: #0074BE;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-JR高崎線{
+    background-color: #FF9845;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-つくばエクスプレス線{
+    background-color: #014081;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-上越新幹線{
+    background-color: #008000;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京成成田空港線 {
+    background-color: #F47B21;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京成押上線 {
+    background-color: #0166B3;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京成本線 {
+    background-color: #0166B3;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京成金町線 {
+    background-color: #15388B;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京浜急行大師線 {
+    background-color: #0096E0;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京浜急行本線 {
+    background-color: #0096E0;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京浜急行空港線 {
+    background-color: #0096E0;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京王井の頭線 {
+    background-color: #004385;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京王新線 {
+    background-color: #C60076;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-京王線 {
+    background-color: #C60076;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-北総鉄道 {
+    background-color: #00A3FB;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-北陸新幹線 {
+    background-color: #008000;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-埼玉高速鉄道 {
+    background-color: #2351A5;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-小田急小田原線 {
+    background-color: #0085CE;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-新交通ゆりかもめ {
+    background-color: #0065A6;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-日暮里・舎人ライナー {
+    background-color: #E63181;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京りんかい線 {
+    background-color: #00418E;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ丸ノ内分岐線{
+    background-color: #F62E36;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ丸ノ内線{
+    background-color: #F62E36;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ副都心線{
+    background-color: #9C5E31;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ千代田線{
+    background-color: #00BB85;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ半蔵門線{
+    background-color: #8F76D6;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ南北線{
+    background-color: #00AC9B;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ日比谷線{
+    background-color: #B5B5AC;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ有楽町線{
+    background-color: #C1A470;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ東西線{
+    background-color: #009BBF;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京メトロ銀座線{
+    background-color: #FF9500;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東京モノレール羽田線{
+    background-color: #003586;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東北新幹線{
+    background-color: #008000;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急世田谷線{
+    background-color: #FCC800;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急多摩川線{
+    background-color: #AE0079;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急大井町線{
+    background-color: #F18C43;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急東横線{
+    background-color: #DA0042;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急池上線{
+    background-color: #EE86A8;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急田園都市線{
+    background-color: #00AA8D;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東急目黒線{
+    background-color: #009CD3;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東武亀戸線{
+    background-color: #226BB8;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東武伊勢崎線{
+    background-color: #E72019;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東武大師線{
+    background-color: #226BB8;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東武東上本線{
+    background-color: #10428E;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-東海道新幹線{
+    background-color: #0000FF;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-相鉄・JR直通線{
+    background-color: #008689;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-西武新宿線{
+    background-color: #00A6BF;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-西武有楽町線{
+    background-color: #EE7A00;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-西武池袋線{
+    background-color: #EE7A00;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-西武豊島線{
+    background-color: #EE7A00;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-都営三田線{
+    background-color: #006CB6;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-都営大江戸線{
+    background-color: #C6035D;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-都営新宿線{
+    background-color: #B0C124;
+    color: black;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-都営浅草線{
+    background-color: #E14131;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
+
+.line-都電荒川線{
+    background-color: #269A45;
+    color: white;
+    font-weight: bold;
+    padding: 2px 5px;
+    border-radius: 4px;
+}
