@@ -197,7 +197,7 @@
                         .rows()
                         .nodes()
                         .to$()
-                        .find('td:nth-child(3), td:nth-child(4), td:nth-child(5)')
+                        .find('td:nth-child(4), td:nth-child(5), td:nth-child(6)')
                         .each(function () {
                             const dangerLevel = parseInt($(this).text(), 10);
                             if (dangerLevel >= 1 && dangerLevel <= 5) {
@@ -212,7 +212,7 @@
                         .rows()
                         .nodes()
                         .to$()
-                        .find('td:nth-child(2)')
+                        .find('td:nth-child(3)')
                         .each(function () {
                             const landType = $(this).text().trim();
 
