@@ -66,10 +66,6 @@
     <div class="content" style="display:none;">
         <aside class="sidebar">
             <section class="option_box">
-                <h3>列フィルター</h3>
-                <div id="columns-container"></div>
-            </section>
-            <section class="option_box">
                 <h3>検索フィルター</h3>
                 <div id="filter-buttons"></div>
             </section>
@@ -242,21 +238,6 @@
                     },
                     initComplete: function () {
                         const dtApi = this.api();
-
-                        // --- 列フィルター修正 ---
-                        dtApi.columns().every(function (index) {
-                            const column = this;
-                            const columnName = $(column.header()).text();
-                            const checkbox = $('<input type="checkbox" class="column-checkbox" data-column="' + index + '" checked>');
-                            const label = $('<label></label>').append(checkbox).append(columnName);
-                            const columnGroup = $('<div class="column-group"></div>').append(label);
-                            $('#columns-container').append(columnGroup);
-
-                            checkbox.on('change', function () {
-                                const colIdx = $(this).data('column');
-                                table.column(colIdx).visible($(this).prop('checked'));
-                            });
-                        });
 
                         // --- 検索フィルターボックス生成 ---
                         const filterContainers = [];
