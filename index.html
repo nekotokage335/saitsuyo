@@ -197,7 +197,7 @@
                         .rows()
                         .nodes()
                         .to$()
-                        .find('td:nth-child(4), td:nth-child(5), td:nth-child(6)') // インデックス3, 4, 5（1始まりなので+1）
+                        .find('td:nth-child(3), td:nth-child(4), td:nth-child(5)')
                         .each(function () {
                             const dangerLevel = parseInt($(this).text(), 10);
                             if (dangerLevel >= 1 && dangerLevel <= 5) {
@@ -212,7 +212,7 @@
                         .rows()
                         .nodes()
                         .to$()
-                        .find('td:nth-child(3)') // インデックス2（1始まりで+1）
+                        .find('td:nth-child(2)')
                         .each(function () {
                             const landType = $(this).text().trim();
 
