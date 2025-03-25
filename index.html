@@ -184,7 +184,7 @@
                             }
                         },
                         {
-                            targets: 7, // 路線のインデックス（0始まりなので9列目なら8）
+                            targets: 7, // 路線のインデックス
                             createdCell: function (td, cellData) {
                                 const lines = cellData.split(' ');
                                 td.innerHTML = lines.map(line => `<span class="line-${line}">${line}</span>`).join(' ');
